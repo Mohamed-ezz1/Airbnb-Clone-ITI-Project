@@ -31,6 +31,9 @@ public class Property
     public IEnumerable<Booking> PropertyBookings { get; set; } = new List<Booking>();
     public IEnumerable<PropertyRule> PropertyRules { get; set; } = new List<PropertyRule>();
     public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
+
+    public Guid UserId { get; set; }
+    public User User { get; set; }
     public int CategoryId { get; set; }
     public Category? Category { get; set; } 
    // public int CountryId { get; set; }
