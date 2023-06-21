@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Airbnb.BL.DTO
 {
-    internal class Class2
+    public class Class2
     {
+       //test
     }
 }
