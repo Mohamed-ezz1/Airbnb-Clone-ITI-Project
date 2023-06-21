@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airbnb.DAL.Data.Models
+namespace Airbnb.DAL;
+
+public enum UserType
 {
-    internal class UserType
-    {
-    }
+    Guest,Host
 }

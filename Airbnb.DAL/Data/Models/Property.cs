@@ -9,6 +9,7 @@ namespace Airbnb.DAl;
 
 public class Property
 {
+    [Key]
     public Guid Id { get; set; }
     
     public string Name { get; set; } = string.Empty;
