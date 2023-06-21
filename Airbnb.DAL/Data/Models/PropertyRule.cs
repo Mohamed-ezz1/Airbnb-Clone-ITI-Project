@@ -9,7 +9,7 @@ namespace Airbnb.DAl;
 public class PropertyRule
 {
     public int RuleId { get; set; }
-    public Rule Rule { get; set; } = new();
-    public int PropertyId { get; set; }
-    public Property Property { get; set; } = new();
+    public Rule? Rule { get; set; }
+    public Guid PropertyId { get; set; }
+    public Property? Property { get; set; }
 }

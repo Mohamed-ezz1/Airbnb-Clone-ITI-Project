@@ -9,10 +9,10 @@ namespace Airbnb.DAl;
 public class PropertyImage
 {
     public int Id { get; set; }
-    public int PropertyId { get; set; }
-    public Property Property { get; set; } = new();
+    public Guid PropertyId { get; set; }
+    public Property? Property { get; set; } 
     public string Image { get; set; } = string.Empty;
     public int UserId { get; set; }
-    public User User { get; set; } = new();
+    public User? User { get; set; }
     public DateTime CreatedDate { get; set; }
 }

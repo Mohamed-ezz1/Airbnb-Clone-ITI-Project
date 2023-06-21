@@ -8,11 +8,11 @@ namespace Airbnb.DAl;
 
 public class PropertyAmenity
 {
-    public int propertyId { get; set; }
+    public Guid propertyId { get; set; }
 
-    public Property Property { get; set; } = new Property();
+    public Property? Property { get; set; } 
 
     public int AminityId { get; set; }
-    public Amenity Amenity { get; set; } = new();
+    public Amenity? Amenity { get; set; } 
 
 }
