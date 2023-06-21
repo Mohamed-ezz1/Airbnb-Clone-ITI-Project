@@ -12,6 +12,7 @@ public class Rule
     [Key]
 
     public int Id { get; set; }
+    [MaxLength(100)]
     public string RuleName { get; set; } = string.Empty;
     public IEnumerable<PropertyRule> RuleProperty { get; set; } = new List<PropertyRule>();
 }

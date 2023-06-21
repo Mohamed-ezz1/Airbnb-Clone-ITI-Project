@@ -15,7 +15,7 @@ public class PropertyImage
     public Guid PropertyId { get; set; }
     public Property? Property { get; set; } 
     public string Image { get; set; } = string.Empty;
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
     public User? User { get; set; }
     public DateTime CreatedDate { get; set; }
 }

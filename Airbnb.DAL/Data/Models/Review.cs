@@ -20,6 +20,7 @@ public class Review
     public int Rate { get; set; }
     
     public DateTime CreatedDate { get; set; }
+    [MaxLength(500)]
     public string Comment { get; set; } = string.Empty;
     
 }

@@ -11,9 +11,11 @@ public class Property
 {
     [Key]
     public Guid Id { get; set; }
-    
+    [MaxLength(25)]
     public string Name { get; set; } = string.Empty;
+    [MaxLength(500)]
     public string Description { get; set; } = string.Empty;
+
     public string Address { get; set; } = string.Empty;
     public int BathroomCount { get; set; }
     public int RoomCount { get; set; }
@@ -28,6 +30,7 @@ public class Property
     public IEnumerable<PropertyImage> PropertyImages { get; set; } = new List<PropertyImage>();
     public IEnumerable<Booking> PropertyBookings { get; set; } = new List<Booking>();
     public IEnumerable<PropertyRule> PropertyRules { get; set; } = new List<PropertyRule>();
+    public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
     public int CategoryId { get; set; }
     public Category? Category { get; set; } 
    // public int CountryId { get; set; }
@@ -35,5 +38,6 @@ public class Property
     public int CityId { get; set; }
     public City? City { get; set; }
      public int NumberOfReview { get; set; }
+    [Range(0,5)]
     public double OverALLReview { get; set; }
 }

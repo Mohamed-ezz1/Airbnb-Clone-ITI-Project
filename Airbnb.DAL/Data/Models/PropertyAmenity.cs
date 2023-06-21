@@ -13,7 +13,7 @@ public class PropertyAmenity
 
     public Property? Property { get; set; } 
 
-    public int AminityId { get; set; }
+    public int AmenityId { get; set; }
     public Amenity? Amenity { get; set; } 
 
 }

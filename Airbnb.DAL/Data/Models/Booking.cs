@@ -12,13 +12,17 @@ public class Booking
     [Key]
     public Guid Id { get; set; }
     
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
     public User? User { get; set; } 
     public Guid PropertyId { get; set; }
     public Property? Property { get; set; }
+
     public DateTime CheckInDate { get; set; }
     public DateTime CheckOutDate { get; set; }
     public double TotalPrice { get; set; }
     public DateTime BookingDate { get; set; }
+    [Range(0,16)]
     public int NumberOfGuests { get; set; }
+    public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
+
 }
