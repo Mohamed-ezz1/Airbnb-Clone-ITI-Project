@@ -33,7 +33,7 @@ public class Property
     public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
 
     public Guid UserId { get; set; }
-    public User User { get; set; }
+    public User? User { get; set; }
     public int CategoryId { get; set; }
     public Category? Category { get; set; } 
    // public int CountryId { get; set; }
