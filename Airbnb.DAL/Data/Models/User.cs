@@ -11,6 +11,19 @@ namespace Airbnb.DAl;
 
 public class User: IdentityUser<Guid>
 {
+    public new Guid Id { 
+    
+    
+    get
+        {
+            return base.Id;
+        }
+        set { base.Id = value; }    
+    
+    
+    }
+
+
     [MaxLength(30)] 
     
     public string FirstName { get; set; } = string.Empty;
