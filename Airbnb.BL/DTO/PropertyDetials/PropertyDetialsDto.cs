@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace Airbnb.BL;
 
-internal class PropertyDetialsDto
+public class PropertyDetialsDto
 {
-    public string NameOfProperty { get; set; }
-    public string RatingOverroll { get; set; }
+    public string NameOfProperty { get; set; } = string.Empty;
+    public string RatingOverroll { get; set; } = string.Empty;
     public int NumOfReview { get; set; }
-    public string CityNmae { get; set; }
-    public string CountryNmae { get; set; }
+    public string CityNmae { get; set; } = string.Empty;
+    public string CountryNmae { get; set; } = string.Empty;
     public List<String> Imgs { get; set; }
-    public string UserName { get; set; }
-    public string UserImage { get; set; }
+    public string UserName { get; set; } = string.Empty;
+    public string UserImage { get; set; } = string.Empty;
     public int MaxNumOfGust { get; set; }
     public int BedRoomCount { get; set; }
     public decimal PricePerNight { get; set; }// 
-    public string PropertyDescription { get; set; }
-    public List<Amints> Aminties { get; set; }
+    public string PropertyDescription { get; set; } = string.Empty;
+    public List<Amintsdto> Aminties { get; set; }
 
 
 }
@@ -29,10 +29,10 @@ internal class PropertyDetialsDto
 
 
 
-class Amints
+ public class Amintsdto
 {
 
-    public string AmintiesName { get; set; }
-    public string Icon { get; set; }
+    public string AmintiesName { get; set; } = string.Empty;
+    public string Icon { get; set; } = string.Empty;
 
 }
