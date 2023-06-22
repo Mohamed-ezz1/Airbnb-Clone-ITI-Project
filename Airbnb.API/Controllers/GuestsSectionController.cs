@@ -5,7 +5,7 @@ namespace Airbnb.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GuestsSection : ControllerBase
+    public class GuestsSectionController : ControllerBase
     {
     }
 }
