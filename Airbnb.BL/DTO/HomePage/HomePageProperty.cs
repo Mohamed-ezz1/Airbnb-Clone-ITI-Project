@@ -9,12 +9,12 @@ namespace Airbnb.BL
     public class HomePageProperty
     {
 
-        public Guid Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        List<string> imgUrl { get; set; }
+        public Guid PropertyId { get; set; }
+        public string PropertyName { get; set; } = string.Empty;
+        ICollection<string> ImgUrl { get; set; } = new List<string>();   
         public double PricePerNight { get; set; }
-        public String CityName { get; set; } = string.Empty;
-        public String CountryName { get; set; } = string.Empty;
+        public string CityName { get; set; } = string.Empty;
+        public string CountryName { get; set; } = string.Empty;
         public double propertyAllRating { get; set; }
 
 

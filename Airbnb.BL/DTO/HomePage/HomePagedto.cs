@@ -12,9 +12,8 @@ namespace Airbnb.BL
 
         public string UserType { get; set; }=string.Empty;
 
-        public List<HomePageCategoryDto> GetCategoryDtos { get; set; }
-        public List<HomePageProperty> homePageProperties { get; set; }
-
+        public ICollection<HomePageCategoryDto> GetCategoryDtos { get; set; }= new List<HomePageCategoryDto>();
+        public ICollection<HomePageProperty> homePageProperties { get; set; } = new List<HomePageProperty>();
 
 
     }
