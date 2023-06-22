@@ -7,5 +7,6 @@ namespace Airbnb.API.Controllers
     [ApiController]
     public class SearchBarController : ControllerBase
     {
+        public SearchBarController(    ) { }    
     }
 }
