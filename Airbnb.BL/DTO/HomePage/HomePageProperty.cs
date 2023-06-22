@@ -11,7 +11,7 @@ namespace Airbnb.BL
 
         public Guid PropertyId { get; set; }
         public string PropertyName { get; set; } = string.Empty;
-        ICollection<string> ImgUrl { get; set; } = new List<string>();   
+        public ICollection<string> ImgUrl { get; set; } = new List<string>();   
         public double PricePerNight { get; set; }
         public string CityName { get; set; } = string.Empty;
         public string CountryName { get; set; } = string.Empty;
