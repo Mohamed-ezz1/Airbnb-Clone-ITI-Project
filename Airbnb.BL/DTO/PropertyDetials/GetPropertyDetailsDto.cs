@@ -13,7 +13,7 @@ public class GetPropertyDetailsDto
     public int NumOfReview { get; set; }
     public string CityNmae { get; set; } = string.Empty;
     public string CountryNmae { get; set; } = string.Empty;
-    public List<string>? Imgs { get; set; }
+    public ICollection<string> Imgs { get; set; } = new List<string>();    
     public string UserName { get; set; } = string.Empty;
     public string UserImage { get; set; } = string.Empty;
     public int MaxNumOfGust { get; set; }
