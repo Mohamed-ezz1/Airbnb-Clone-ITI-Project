@@ -1,3 +1,4 @@
+using Airbnb.BL;
 using Airbnb.DAL;
 using Airbnb.DAL.Data;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<AircbnbContext>(options =>
  options.UseSqlServer("Server=.; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
 
 
+builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
+builder.Services.AddScoped<IHostSectionManagers, HostSectionManagers>();
+builder.Services.AddScoped<IPropertyHost, PropertyHost>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
