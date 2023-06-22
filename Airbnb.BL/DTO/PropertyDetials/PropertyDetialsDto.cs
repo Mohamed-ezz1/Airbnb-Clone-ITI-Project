@@ -8,19 +8,19 @@ namespace Airbnb.BL;
 
 public class PropertyDetialsDto
 {
-    public string NameOfProperty { get; set; } = string.Empty;
-    public string RatingOverroll { get; set; } = string.Empty;
+    public string? NameOfProperty { get; set; }
+    public string? RatingOverroll { get; set; }
     public int NumOfReview { get; set; }
-    public string CityNmae { get; set; } = string.Empty;
-    public string CountryNmae { get; set; } = string.Empty;
-    public List<String> Imgs { get; set; }
-    public string UserName { get; set; } = string.Empty;
-    public string UserImage { get; set; } = string.Empty;
+    public string? CityNmae { get; set; }
+    public string? CountryNmae { get; set; }
+    public List<String>? Imgs { get; set; }
+    public string? UserName { get; set; }
+    public string? UserImage { get; set; }
     public int MaxNumOfGust { get; set; }
     public int BedRoomCount { get; set; }
     public decimal PricePerNight { get; set; }// 
-    public string PropertyDescription { get; set; } = string.Empty;
-    public List<Amintsdto> Aminties { get; set; }
+    public string? PropertyDescription { get; set; }
+    public List<AmintsDTO>? Aminties { get; set; }
 
 
 }
@@ -29,10 +29,10 @@ public class PropertyDetialsDto
 
 
 
- public class Amintsdto
+public class AmintsDTO
 {
 
-    public string AmintiesName { get; set; } = string.Empty;
-    public string Icon { get; set; } = string.Empty;
+    public string? AmintiesName { get; set; }
+    public string? Icon { get; set; }
 
 }
