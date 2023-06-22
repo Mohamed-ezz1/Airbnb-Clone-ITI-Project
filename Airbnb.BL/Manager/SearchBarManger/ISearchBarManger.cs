@@ -8,5 +8,6 @@ namespace Airbnb.BL
 {
     public interface ISearchBarManger
     {
+        List<GetNavbarSearchdto> GetSearchBarData();
     }
 }
