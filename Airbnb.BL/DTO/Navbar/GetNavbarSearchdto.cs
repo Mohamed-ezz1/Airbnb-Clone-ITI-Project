@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 namespace Airbnb.BL;
 
 
-public class NavbarSearchdto
+public class GetNavbarSearchdto
 {
-    public int Country_Id { get; set; }
-    public String Country_name { get; set; }
-    public List<Navbar_City> navbar_Cities { get; set; }
+    public int CountryId { get; set; }
+    public string Countryname { get; set; }
+    public ICollection<NavbarCity> NavbarCities { get; set; }= new List<NavbarCity>();
 
 }
 
 
 
-public class Navbar_City
+public class NavbarCity
 {
 
     public int CityId { get; set; }
-    public String Cityname { get; set; } = string.Empty;
+    public string Cityname { get; set; } = string.Empty;
 }

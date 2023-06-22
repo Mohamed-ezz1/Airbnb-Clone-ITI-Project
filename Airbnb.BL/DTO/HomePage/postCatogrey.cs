@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airbnb.BL.DTO.HomePage
+namespace Airbnb.BL;
+
+public class postCatogrey
 {
-    internal class postCatogrey
-    {
-    }
+    public int CatogreyId { get; set; }
 }

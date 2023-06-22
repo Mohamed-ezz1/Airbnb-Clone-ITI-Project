@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Airbnb.BL;
-public class NavbarSearchResultDto
+public class PostNavbarSearchResultDto
 {
     public int Cityid { get; set; }
     public int MaxGuest { get; set; }
