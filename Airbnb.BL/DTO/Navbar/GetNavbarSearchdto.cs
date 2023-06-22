@@ -10,7 +10,7 @@ namespace Airbnb.BL;
 public class GetNavbarSearchdto
 {
     public int CountryId { get; set; }
-    public string Countryname { get; set; }
+    public string Countryname { get; set; } = string.Empty;
     public ICollection<NavbarCity> NavbarCities { get; set; }= new List<NavbarCity>();
 
 }
