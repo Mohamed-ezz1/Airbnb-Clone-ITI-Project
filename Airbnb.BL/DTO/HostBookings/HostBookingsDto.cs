@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Airbnb.BL;
 
-public class GuestBookingsDto
+public class HostBookingsDto
 {
-    public string? PropertyName { get; set; }
-    public string? GuestName { get; set; }
+    public string PropertyName { get; set; } = string.Empty;
+    public string GuestName { get; set; } = string.Empty;
     public DateTime CheckInDate { get; set; }
     public DateTime CheckOutDate { get; set; }
     public double TotalPrice { get; set; }
