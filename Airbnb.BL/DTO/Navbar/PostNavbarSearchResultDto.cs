@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Airbnb.BL;
 public class PostNavbarSearchResultDto
 {
-    public int Cityid { get; set; }
-    public int MaxGuest { get; set; }
+    public int Cityid { get; set; } = -1;
+    public int Guest { get; set; } = 0;
 
     
 
