@@ -18,7 +18,12 @@ public class PropertyGetUpdateDto
     public ICollection<CategoryOfUpdateDto> Categories { get; set; } = new List<CategoryOfUpdateDto>();
     public ICollection<CountryOfUpdateDto> Countries { get; set; } = new List<CountryOfUpdateDto>();
     public ICollection<CityofUpdateDto> Cities { get; set; } = new List<CityofUpdateDto>();
+    public int OldCategoryId { get; set; }
+    public int OldCityId { get; set; }
+
     public string? Address { get; set; }
     public string? Description { get; set; }
     public ICollection<AmenitiesOfUpdatePropertyDto> Amenities { get; set; } = new List<AmenitiesOfUpdatePropertyDto>();
+    public ICollection<int> OldAmenities { get; set; } = new List<int>();
 }
+

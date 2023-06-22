@@ -10,12 +10,11 @@ namespace Airbnb.BL.DTO.HostListProperties
     {
         public Guid PropertyId { get; set; }
         public int MaxGuests { get; set; }
-
-
+        public string PropertyName { get; set; } = string.Empty;
         public double price { get; set; }
-        public string Street { get; set; }
-        public string CountryName { get; set; }
-        public string CityName { get; set; }
+        public string Street { get; set; } = string.Empty;
+        public string CountryName { get; set; } = string.Empty;
+        public string CityName { get; set; } = string.Empty;
 
 
     }
