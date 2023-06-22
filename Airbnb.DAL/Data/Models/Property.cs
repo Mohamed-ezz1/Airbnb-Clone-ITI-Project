@@ -32,13 +32,11 @@ public class Property
     public IEnumerable<PropertyRule> PropertyRules { get; set; } = new List<PropertyRule>();
     public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
 
-    public Guid UserId { get; set; }
+    public string? UserId { get; set; }
     public User? User { get; set; }
-    public int CategoryId { get; set; }
+    public int? CategoryId { get; set; }
     public Category? Category { get; set; } 
-   // public int CountryId { get; set; }
-    //public Country? Country { get; set; } 
-    public int CityId { get; set; }
+    public int? CityId { get; set; }
     public City? City { get; set; }
      public int NumberOfReview { get; set; }
     [Range(0,5)]

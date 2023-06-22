@@ -9,20 +9,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Airbnb.DAl;
 
-public class User: IdentityUser<Guid>
+public class User: IdentityUser
 {
-    public new Guid Id { 
-    
-    
-    get
-        {
-            return base.Id;
-        }
-        set { base.Id = value; }    
-    
-    
-    }
-
 
     [MaxLength(30)] 
     

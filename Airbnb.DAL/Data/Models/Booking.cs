@@ -12,9 +12,9 @@ public class Booking
     [Key]
     public Guid Id { get; set; }
     
-    public Guid UserId { get; set; }
+    public string? UserId { get; set; }
     public User? User { get; set; } 
-    public Guid PropertyId { get; set; }
+    public Guid? PropertyId { get; set; }
     public Property? Property { get; set; }
 
     public DateTime CheckInDate { get; set; }
