@@ -8,6 +8,7 @@ namespace Airbnb.BL;
 
 public class GuestBookingsHistory
 {
+    //GET
     public Guid BookId { get; set; }
     public string HostName { get; set; } = string.Empty;
     public string PropertyName { get; set; } = string.Empty;

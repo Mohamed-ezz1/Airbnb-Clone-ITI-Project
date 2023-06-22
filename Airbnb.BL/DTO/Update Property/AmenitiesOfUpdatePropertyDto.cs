@@ -9,6 +9,6 @@ namespace Airbnb.BL;
 public class AmenitiesOfUpdatePropertyDto
 {
     public int Id { get; set; }
-    public string? Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
 }

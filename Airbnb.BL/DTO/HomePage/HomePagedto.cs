@@ -9,7 +9,7 @@ namespace Airbnb.BL
     public class HomePagedto
     {
 
-
+        //GET
         public string UserType { get; set; }=string.Empty;
 
         public ICollection<HomePageCategoryDto> GetCategoryDtos { get; set; }= new List<HomePageCategoryDto>();

@@ -8,6 +8,6 @@ namespace Airbnb.BL;
 
 public class ImageOfUpdatePropertyDto
 {
-    public int Id { get; set; } 
-    public string? URL { get; set; }
+    public int Id { get; set; }
+    public string URL { get; set; } = string.Empty;
 }

@@ -8,8 +8,9 @@ namespace Airbnb.BL;
 
 public class AddBookingDto
 {
-    public string Userid { get; set; } = string.Empty;
-    public Guid Propertyid { get; set; }
+    //Post dto
+    public string UserId { get; set; } = string.Empty;
+    public Guid PropertyId { get; set; }
     public DateTime StartDate { get; set; } = DateTime.Now;
     public DateTime EndDate { get; set; } = DateTime.Now;
     public int NumOfGuest { get; set; }

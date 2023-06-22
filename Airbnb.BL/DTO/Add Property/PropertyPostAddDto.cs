@@ -17,8 +17,8 @@ public class PropertyPostAddDto
     public int CategoryId { get; set; }
  //   public int CountryId { get; set; }
     public int cityId { get; set; }
-    public string? Address { get; set; } = string.Empty;
-    public string? Description { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
+    public string  Description { get; set; } = string.Empty;
     public ICollection<int> AmenitiesId { get; set; } = new List<int>();
 
 }

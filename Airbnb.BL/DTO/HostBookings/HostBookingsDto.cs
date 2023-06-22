@@ -8,6 +8,7 @@ namespace Airbnb.BL;
 
 public class HostBookingsDto
 {
+    //GET
     public string PropertyName { get; set; } = string.Empty;
     public string GuestName { get; set; } = string.Empty;
     public DateTime CheckInDate { get; set; }
