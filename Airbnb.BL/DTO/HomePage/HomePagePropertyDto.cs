@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.BL
 {
-    public class HomePageProperty
+    public class HomePagePropertyDto
     {
 
         public Guid PropertyId { get; set; }
@@ -15,7 +15,7 @@ namespace Airbnb.BL
         public double PricePerNight { get; set; }
         public string CityName { get; set; } = string.Empty;
         public string CountryName { get; set; } = string.Empty;
-        public double propertyAllRating { get; set; }
+        public double PropertyAllRating { get; set; }
 
 
 
