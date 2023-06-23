@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AircbnbContext>(options =>
- options.UseSqlServer("Server=.; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
+ options.UseSqlServer("Server=DESKTOP-34KGDF7\\MSSQLSERVER01; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
 
 
 builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
@@ -20,6 +20,10 @@ builder.Services.AddScoped<IHostSectionManagers, HostSectionManagers>();
 builder.Services.AddScoped<IPropertyHost, PropertyHost>();
 builder.Services.AddScoped<ISearchBarManger, SearchBarManger>();
 builder.Services.AddScoped<ICountriesRepositories, CountriesRepositories>();
+builder.Services.AddScoped<IUserDetailsRepositories, UserDetailsRepositories>();
+builder.Services.AddScoped<IUserMangers, UserMangers>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

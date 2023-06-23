@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Airbnb.DAL\Airbnb.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\User\" />
+  </ItemGroup>
+
 </Project>
