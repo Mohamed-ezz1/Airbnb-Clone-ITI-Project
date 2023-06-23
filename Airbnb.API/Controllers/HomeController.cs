@@ -44,18 +44,4 @@ public class HomeController : ControllerBase
 
     #endregion
 
-
-    #region Get Category By ID
-
-    [HttpPost]
-    [Route("id")]
-
-    public ActionResult<postCatogrey> GetCategoryById(int id)
-    {
-        postCatogrey? cat =_homeManager.GetCategoryById(id);
-        return cat;
-    }
-
-    #endregion
-
 }

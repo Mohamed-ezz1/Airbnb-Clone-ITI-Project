@@ -48,15 +48,4 @@ public class HomeManager : IHomeManager
             });
         return catsDto;
     }
-
-
-    public postCatogrey? GetCategoryById(int id)
-    {
-        Category? categFromDb = _propertyRepo.GetCategoryById(id);
-
-        return new postCatogrey
-        {
-            CatogreyId = categFromDb.Id
-        };
-    }
 }

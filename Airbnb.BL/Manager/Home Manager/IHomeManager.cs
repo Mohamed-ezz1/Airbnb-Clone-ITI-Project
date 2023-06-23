@@ -10,6 +10,4 @@ public interface IHomeManager
 {
     IEnumerable<HomePagePropertyDto> GetAllPropsAsDtos();
     IEnumerable<HomePageCategoryDto> GetAllCatsAsDtos();
-
-    postCatogrey? GetCategoryById(int id);
 }
