@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.BL;
 
-public class HostProperties
+public class HostPropertiesDto
 {
     //Get
     public Guid PropertyId { get; set; }

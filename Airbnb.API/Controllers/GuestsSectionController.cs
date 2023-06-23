@@ -43,15 +43,15 @@ namespace Airbnb.API.Controllers
             return NoContent();
         }
 
-        [HttpGet]
-        public ActionResult<GuestProfileReedDTO> GuestProfileRead(string UserId)
-        {
-            GuestProfileReedDTO GuestProfile =  _GuestSectionManager.GuestProfileRead(UserId);
+       // [HttpGet]
+        //public ActionResult<GuestProfileReedDTO> GuestProfileRead(string UserId)
+        //{
+        //    GuestProfileReedDTO GuestProfile =  _GuestSectionManager.GuestProfileRead(UserId);
 
-            return GuestProfile;
+        //    return GuestProfile;
 
 
 
-        }
+        //}
     }
 }

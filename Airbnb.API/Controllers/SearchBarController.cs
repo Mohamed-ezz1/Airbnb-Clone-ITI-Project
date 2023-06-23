@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Airbnb.BL;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Airbnb.API.Controllers
@@ -7,5 +8,21 @@ namespace Airbnb.API.Controllers
     [ApiController]
     public class SearchBarController : ControllerBase
     {
+        private readonly ISearchBarManger searchBarManger;
+        public SearchBarController(ISearchBarManger _searchBarManger) {
+
+
+            searchBarManger = _searchBarManger;
+        }
+
+        [HttpGet]
+        public ActionResult<List<GetNavbarSearchdto>> GetSearchBarData() {
+
+
+            return searchBarManger.GetSearchBarData();
+        }
+
+
+
     }
 }

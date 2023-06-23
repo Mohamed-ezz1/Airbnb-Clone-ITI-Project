@@ -34,10 +34,10 @@ namespace Airbnb.DAL.Repositories.GuestsSectionRepo
                 .Where(p => p.UserId == UserTd).ToList();
         }
 
-        public User GuestProfileRead(string UserId)
-        {
-            return _context.Users.Where(p => p.Id == UserId).FirstOrDefault(); 
-        }
+        //public User GuestProfileRead(string UserId)
+        //{
+        //    return _context.Users.Where(p => p.Id == UserId).FirstOrDefault(); 
+        //}
 
         public void RemoveFromDB(Guid booking)
         {

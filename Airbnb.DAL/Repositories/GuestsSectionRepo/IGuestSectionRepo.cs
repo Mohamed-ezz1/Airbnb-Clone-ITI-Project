@@ -15,6 +15,6 @@ namespace Airbnb.DAL.Repositories.GuestsSectionRepo
 
         public void RemoveFromDB(Guid booking);
         int SaveChanges();
-        User GuestProfileRead(string userId);
+        //User GuestProfileRead(string userId);
     }
 }

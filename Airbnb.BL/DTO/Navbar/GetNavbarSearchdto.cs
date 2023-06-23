@@ -11,7 +11,7 @@ public class GetNavbarSearchdto
 {
     public int CountryId { get; set; }
     public string Countryname { get; set; } = string.Empty;
-    public ICollection<NavbarCity> NavbarCities { get; set; }= new List<NavbarCity>();
+    public IEnumerable<NavbarCity> NavbarCities { get; set; }= new List<NavbarCity>();
 
 }
 

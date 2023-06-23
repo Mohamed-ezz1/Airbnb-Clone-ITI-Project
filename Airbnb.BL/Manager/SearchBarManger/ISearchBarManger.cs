@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airbnb.BL;
-
-public class postCatogrey
+namespace Airbnb.BL
 {
-    public int CatogreyId { get; set; }
+    public interface ISearchBarManger
+    {
+        List<GetNavbarSearchdto> GetSearchBarData();
+    }
 }

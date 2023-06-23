@@ -19,6 +19,14 @@ builder.Services.AddScoped<IGuestSectionManager, GuestSectionManager>();
 builder.Services.AddScoped<IGuestSectionRepo, GuestSectionRepo>();
 
 
+builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
+builder.Services.AddScoped<IHostSectionManagers, HostSectionManagers>();
+builder.Services.AddScoped<ISearchBarManger, SearchBarManger>();
+builder.Services.AddScoped<ICountriesRepositories, CountriesRepositories>();
+builder.Services.AddScoped<IUserDetailsRepositories, UserDetailsRepositories>();
+builder.Services.AddScoped<IUserMangers, UserMangers>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

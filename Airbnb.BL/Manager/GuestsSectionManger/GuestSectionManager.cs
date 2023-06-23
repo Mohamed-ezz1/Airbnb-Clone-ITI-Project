@@ -66,21 +66,21 @@ public class GuestSectionManager : IGuestSectionManager
         return ConvertBookingToDto;
     }
 
-    public GuestProfileReedDTO GuestProfileRead(string UserId)
-    {
-        User UserData = _IGuestSectionRepo.GuestProfileRead(UserId);
+    //public GuestProfileReedDTO GuestProfileRead(string UserId)
+    //{
+    //    User UserData = _IGuestSectionRepo.GuestProfileRead(UserId);
 
-        return new GuestProfileReedDTO
-        {
-            UserId = UserData.Id,
-            Email = UserData.Email,
-            PhoneNumber = UserData.PhoneNumber,
-            FirstName = UserData.FirstName,
-            LastName = UserData.LasttName,
-            About =UserData.About
+    //    return new GuestProfileReedDTO
+    //    {
+    //        UserId = UserData.Id,
+    //        Email = UserData.Email,
+    //        PhoneNumber = UserData.PhoneNumber,
+    //        FirstName = UserData.FirstName,
+    //        LastName = UserData.LasttName,
+    //        About =UserData.About
 
-        };
-    }
+    //    };
+    //}
 
     public bool Remove(Guid BookingiD)
     {

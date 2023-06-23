@@ -98,25 +98,25 @@ namespace Airbnb.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d9e527de-3d4a-404b-9e75-1424d10e0640"),
-                            BookingDate = new DateTime(2023, 6, 22, 9, 45, 45, 890, DateTimeKind.Utc).AddTicks(8170),
-                            CheckInDate = new DateTime(2023, 6, 23, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CheckOutDate = new DateTime(2023, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Id = new Guid("89c4e252-78ce-4f12-9e15-46126d20c378"),
+                            BookingDate = new DateTime(2023, 6, 23, 7, 3, 35, 914, DateTimeKind.Utc).AddTicks(2341),
+                            CheckInDate = new DateTime(2023, 6, 24, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CheckOutDate = new DateTime(2023, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             NumberOfGuests = 4,
-                            PropertyId = new Guid("a0149e8e-81ae-4213-b847-35c910bc5ed5"),
+                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
                             TotalPrice = 500.0,
-                            UserId = "c4152243-47ce-4a63-a48a-3396d27640ef"
+                            UserId = "ebfec8b1-bc53-46f4-9dac-80138daffd23"
                         },
                         new
                         {
-                            Id = new Guid("ed19e856-c242-43fb-84be-c65db85545ee"),
-                            BookingDate = new DateTime(2023, 6, 22, 9, 45, 45, 890, DateTimeKind.Utc).AddTicks(8178),
-                            CheckInDate = new DateTime(2023, 6, 24, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CheckOutDate = new DateTime(2023, 6, 27, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Id = new Guid("db9ce2ab-b174-43a9-bc7a-5f33b1fd8a89"),
+                            BookingDate = new DateTime(2023, 6, 23, 7, 3, 35, 914, DateTimeKind.Utc).AddTicks(2347),
+                            CheckInDate = new DateTime(2023, 6, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CheckOutDate = new DateTime(2023, 6, 28, 0, 0, 0, 0, DateTimeKind.Utc),
                             NumberOfGuests = 2,
-                            PropertyId = new Guid("7587ebde-9b3a-441b-9b52-44c8364ada20"),
+                            PropertyId = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
                             TotalPrice = 300.0,
-                            UserId = "8d279fcd-143e-4c6c-be8d-ff7860eb239f"
+                            UserId = "a7acc0ae-d3f7-4537-85bb-f59c832f8391"
                         });
                 });
 
@@ -286,7 +286,7 @@ namespace Airbnb.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a0149e8e-81ae-4213-b847-35c910bc5ed5"),
+                            Id = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
                             Address = "Address 1",
                             AvailabilityType = true,
                             BathroomCount = 2,
@@ -302,11 +302,11 @@ namespace Airbnb.DAL.Migrations
                             OverALLReview = 0.0,
                             PricePerNight = 100.0,
                             RoomCount = 3,
-                            UserId = "c4152243-47ce-4a63-a48a-3396d27640ef"
+                            UserId = "a7acc0ae-d3f7-4537-85bb-f59c832f8391"
                         },
                         new
                         {
-                            Id = new Guid("7587ebde-9b3a-441b-9b52-44c8364ada20"),
+                            Id = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
                             Address = "Address 2",
                             AvailabilityType = true,
                             BathroomCount = 1,
@@ -322,7 +322,7 @@ namespace Airbnb.DAL.Migrations
                             OverALLReview = 0.0,
                             PricePerNight = 80.0,
                             RoomCount = 2,
-                            UserId = "8d279fcd-143e-4c6c-be8d-ff7860eb239f"
+                            UserId = "ebfec8b1-bc53-46f4-9dac-80138daffd23"
                         });
                 });
 
@@ -343,12 +343,12 @@ namespace Airbnb.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            PropertyId = new Guid("a0149e8e-81ae-4213-b847-35c910bc5ed5"),
+                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
                             AmenityId = 1
                         },
                         new
                         {
-                            PropertyId = new Guid("7587ebde-9b3a-441b-9b52-44c8364ada20"),
+                            PropertyId = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
                             AmenityId = 2
                         });
                 });
@@ -386,18 +386,18 @@ namespace Airbnb.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 6, 22, 12, 45, 45, 890, DateTimeKind.Local).AddTicks(8290),
+                            CreatedDate = new DateTime(2023, 6, 23, 10, 3, 35, 914, DateTimeKind.Local).AddTicks(2369),
                             Image = "image1.jpg",
-                            PropertyId = new Guid("a0149e8e-81ae-4213-b847-35c910bc5ed5"),
-                            UserId = "c4152243-47ce-4a63-a48a-3396d27640ef"
+                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
+                            UserId = "a7acc0ae-d3f7-4537-85bb-f59c832f8391"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 6, 22, 12, 45, 45, 890, DateTimeKind.Local).AddTicks(8353),
+                            CreatedDate = new DateTime(2023, 6, 23, 10, 3, 35, 914, DateTimeKind.Local).AddTicks(2419),
                             Image = "image2.jpg",
-                            PropertyId = new Guid("a0149e8e-81ae-4213-b847-35c910bc5ed5"),
-                            UserId = "8d279fcd-143e-4c6c-be8d-ff7860eb239f"
+                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
+                            UserId = "ebfec8b1-bc53-46f4-9dac-80138daffd23"
                         });
                 });
 
@@ -418,12 +418,12 @@ namespace Airbnb.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            PropertyId = new Guid("a0149e8e-81ae-4213-b847-35c910bc5ed5"),
+                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
                             RuleId = 1
                         },
                         new
                         {
-                            PropertyId = new Guid("7587ebde-9b3a-441b-9b52-44c8364ada20"),
+                            PropertyId = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
                             RuleId = 2
                         });
                 });
@@ -461,20 +461,20 @@ namespace Airbnb.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            BookingId = new Guid("d9e527de-3d4a-404b-9e75-1424d10e0640"),
-                            PropertyId = new Guid("a0149e8e-81ae-4213-b847-35c910bc5ed5"),
-                            UserId = "c4152243-47ce-4a63-a48a-3396d27640ef",
+                            BookingId = new Guid("89c4e252-78ce-4f12-9e15-46126d20c378"),
+                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
+                            UserId = "a7acc0ae-d3f7-4537-85bb-f59c832f8391",
                             Comment = "This property was great!",
-                            CreatedDate = new DateTime(2023, 6, 22, 9, 45, 45, 890, DateTimeKind.Utc).AddTicks(8187),
+                            CreatedDate = new DateTime(2023, 6, 23, 7, 3, 35, 914, DateTimeKind.Utc).AddTicks(2351),
                             Rate = 4
                         },
                         new
                         {
-                            BookingId = new Guid("ed19e856-c242-43fb-84be-c65db85545ee"),
-                            PropertyId = new Guid("7587ebde-9b3a-441b-9b52-44c8364ada20"),
-                            UserId = "8d279fcd-143e-4c6c-be8d-ff7860eb239f",
+                            BookingId = new Guid("db9ce2ab-b174-43a9-bc7a-5f33b1fd8a89"),
+                            PropertyId = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
+                            UserId = "ebfec8b1-bc53-46f4-9dac-80138daffd23",
                             Comment = "Highly recommended!",
-                            CreatedDate = new DateTime(2023, 6, 22, 9, 45, 45, 890, DateTimeKind.Utc).AddTicks(8268),
+                            CreatedDate = new DateTime(2023, 6, 23, 7, 3, 35, 914, DateTimeKind.Utc).AddTicks(2354),
                             Rate = 5
                         });
                 });
@@ -735,15 +735,14 @@ namespace Airbnb.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c4152243-47ce-4a63-a48a-3396d27640ef",
+                            Id = "a7acc0ae-d3f7-4537-85bb-f59c832f8391",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4b4746ce-1f76-4370-9561-cb6ba9122b77",
+                            ConcurrencyStamp = "2c9ef59e-b701-4f9b-af54-bae8c5b07c6f",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1a687dca-c3a9-47e8-af99-546ba4fcbd6f",
+                            SecurityStamp = "8312781c-5c4e-4429-a2e6-0834ab15d278",
                             TwoFactorEnabled = false,
-                            UserName = "john@example.com",
                             About = "I am a regular user.",
                             FirstName = "John",
                             LasttName = "Doe",
@@ -751,15 +750,14 @@ namespace Airbnb.DAL.Migrations
                         },
                         new
                         {
-                            Id = "8d279fcd-143e-4c6c-be8d-ff7860eb239f",
+                            Id = "ebfec8b1-bc53-46f4-9dac-80138daffd23",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "52bd572a-9e2c-4b7f-92e7-dc4e7d9ffa22",
+                            ConcurrencyStamp = "31596520-a9d1-4415-96b6-03a9ac3c7f52",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5aab5138-69d2-4e8d-b2c5-dba788b4f312",
+                            SecurityStamp = "dc1ca6b2-651e-4ed9-9015-8cfa47e4c999",
                             TwoFactorEnabled = false,
-                            UserName = "jane@example.com",
                             About = "I am an admin user.",
                             FirstName = "Jane",
                             LasttName = "Smith",
