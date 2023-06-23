@@ -1,3 +1,4 @@
+using Airbnb.BL;
 using Airbnb.DAL;
 using Airbnb.DAL.Data;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AircbnbContext>(options =>
- options.UseSqlServer("Server=DESKTOP-3QNR3AP\\SS17; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
+ options.UseSqlServer("Server=.; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
 
+builder.Services.AddScoped<IHomeManager, HomeManager>();
+builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
 
 var app = builder.Build();
 
