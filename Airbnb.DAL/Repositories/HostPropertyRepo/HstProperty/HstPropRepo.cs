@@ -17,7 +17,7 @@ public class HstPropRepo : IHstPropRepo
     {
         _aircbnbContext = aircbnbContext;
     }
-
+    //comment
     public void Add(Property property)
     {
         _aircbnbContext.Set<Property>()

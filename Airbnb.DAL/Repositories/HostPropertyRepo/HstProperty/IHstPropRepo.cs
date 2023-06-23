@@ -13,6 +13,6 @@ public interface IHstPropRepo
     void Add(Property property);
     Property? GetPropertyById(Guid id);
     void Update(Property property);
-
+    //comment
     int SaveChanges();
 }

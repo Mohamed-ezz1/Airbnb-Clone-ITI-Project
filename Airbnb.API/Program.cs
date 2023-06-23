@@ -82,6 +82,7 @@ builder.Services.AddScoped<IUserMangers, UserMangers>();
 builder.Services.AddScoped<IHomeManager, HomeManager>();
 builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
 builder.Services.AddScoped<IPropertyDetailsRepo, PropertyDetailsRepo>();
+builder.Services.AddScoped<IPropertiesRepo, PropertiesRepo>();
 
 builder.Services.AddScoped<IPropertyManager, PropertyManager>();
 builder.Services.AddScoped<IPropertyRepo, IPropertyRepo>();
