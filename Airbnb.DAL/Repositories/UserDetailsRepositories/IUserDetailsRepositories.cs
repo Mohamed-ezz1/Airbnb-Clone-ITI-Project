@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Airbnb.DAl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,10 @@ using System.Threading.Tasks;
     {
     public interface IUserDetailsRepositories
     {
+        User GetUesrInfo(string userId);
         UserType GetUserType(string Id);
+        User GuestProfileRead(string userId);
+        int SaveChanges();
+
     }
 }

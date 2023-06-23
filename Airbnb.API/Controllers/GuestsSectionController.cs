@@ -9,7 +9,7 @@ namespace Airbnb.API.Controllers
     [ApiController]
     public class GuestsSectionController : ControllerBase
     {
-
+    
         private readonly IGuestSectionManager _GuestSectionManager;
 
         public GuestsSectionController(IGuestSectionManager patientsManager)
@@ -43,15 +43,6 @@ namespace Airbnb.API.Controllers
             return NoContent();
         }
 
-       // [HttpGet]
-        //public ActionResult<GuestProfileReedDTO> GuestProfileRead(string UserId)
-        //{
-        //    GuestProfileReedDTO GuestProfile =  _GuestSectionManager.GuestProfileRead(UserId);
-
-        //    return GuestProfile;
-
-
-
-        //}
+    
     }
 }
