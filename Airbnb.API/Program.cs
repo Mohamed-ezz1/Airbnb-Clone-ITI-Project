@@ -17,7 +17,6 @@ builder.Services.AddDbContext<AircbnbContext>(options =>
 
 builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
 builder.Services.AddScoped<IHostSectionManagers, HostSectionManagers>();
-builder.Services.AddScoped<IPropertyHost, PropertyHost>();
 builder.Services.AddScoped<ISearchBarManger, SearchBarManger>();
 builder.Services.AddScoped<ICountriesRepositories, CountriesRepositories>();
 var app = builder.Build();
