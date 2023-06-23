@@ -10,8 +10,8 @@ namespace Airbnb.BL;
 
 public class HomeManager : IHomeManager
 {
-    private readonly IPropertyRepo _propertyRepo;
-    public HomeManager(IPropertyRepo propertyRepo)
+    private readonly IHstPropertyRepo _propertyRepo;
+    public HomeManager(IHstPropertyRepo propertyRepo)
     {
         _propertyRepo = propertyRepo;
     }
