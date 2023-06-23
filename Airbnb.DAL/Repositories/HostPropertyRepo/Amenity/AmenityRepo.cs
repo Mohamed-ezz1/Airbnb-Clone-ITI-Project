@@ -1,5 +1,4 @@
-﻿using Airbnb.DAl;
-using Airbnb.DAL.Data;
+﻿using Airbnb.DAL.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
