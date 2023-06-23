@@ -96,6 +96,13 @@ builder.Services.AddScoped<IHostPropertyManager, HostPropertyManager>();
 
 
 //builder.Services.AddScoped<NoCollidingDateRangeAttribute>();
+builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<ICounrtyRepo, CountryRepo>();
+builder.Services.AddScoped<IAmenityRepo, AmenitiesRepo>();
+builder.Services.AddScoped<IHstPropRepo, HstPropRepo>();
+
+
+builder.Services.AddScoped<IHostPropertyManager, HostPropertyManager>();
 
 #endregion
 
