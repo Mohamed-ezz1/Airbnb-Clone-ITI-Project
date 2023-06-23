@@ -80,12 +80,11 @@ builder.Services.AddScoped<IUserDetailsRepositories, UserDetailsRepositories>();
 builder.Services.AddScoped<IUserMangers, UserMangers>();
 
 builder.Services.AddScoped<IHomeManager, HomeManager>();
-builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
+builder.Services.AddScoped<IPropertyManager, PropertyManager>();
 builder.Services.AddScoped<IPropertyDetailsRepo, PropertyDetailsRepo>();
 builder.Services.AddScoped<IPropertiesRepo, PropertiesRepo>();
 
 builder.Services.AddScoped<IPropertyManager, PropertyManager>();
-builder.Services.AddScoped<IPropertyRepo, IPropertyRepo>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<ICounrtyRepo, CountryRepo>();
 builder.Services.AddScoped<IAmenityRepo, AmenitiesRepo>();

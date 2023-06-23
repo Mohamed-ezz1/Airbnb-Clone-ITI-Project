@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.DAL;
 
-public interface IPropertyRepo
+public interface IPropertiesRepo
 {
     IEnumerable<Property> GetAllProps();
     IEnumerable<Category> GetAllCategs();
