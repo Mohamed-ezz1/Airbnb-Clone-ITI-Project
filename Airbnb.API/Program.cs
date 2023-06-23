@@ -9,13 +9,6 @@ using Airbnb.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
-builder.Services.AddScoped<ICounrtyRepo, CountryRepo>();
-builder.Services.AddScoped<IAmenityRepo, AmenitiesRepo>();
-builder.Services.AddScoped<IHstPropRepo, HstPropRepo>();
-
-
-builder.Services.AddScoped<IHostPropertyManager,HostPropertyManager>();
 
 
 
@@ -73,6 +66,9 @@ builder.Services.AddAuthentication(options =>
 
 #endregion
 
+#region MyRegion
+
+
 builder.Services.AddScoped<IGuestSectionManager, GuestSectionManager>();
 builder.Services.AddScoped<IGuestSectionRepo, GuestSectionRepo>();
 builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
@@ -87,7 +83,16 @@ builder.Services.AddScoped<IHstPropertyRepo, HstPropertyRepo>();
 builder.Services.AddScoped<IPropertyDetailsRepo, PropertyDetailsRepo>();
 
 builder.Services.AddScoped<IPropertyManager, PropertyManager>();
+builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<ICounrtyRepo, CountryRepo>();
+builder.Services.AddScoped<IAmenityRepo, AmenitiesRepo>();
+builder.Services.AddScoped<IHstPropRepo, HstPropRepo>();
+
+
+builder.Services.AddScoped<IHostPropertyManager, HostPropertyManager>();
+
 //builder.Services.AddScoped<NoCollidingDateRangeAttribute>();
+#endregion
 
 var app = builder.Build();
 
