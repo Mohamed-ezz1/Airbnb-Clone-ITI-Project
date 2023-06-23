@@ -18,7 +18,7 @@ namespace Airbnb.DAL;
     }
         public IEnumerable<Country> GetcountrywithCities()
         {
-        return aircbnbContext.Countries.Include(P => P.Cities).ToList(); 
+        return aircbnbContext.Countries.Include(P => P.Cities); 
     }
     }
 

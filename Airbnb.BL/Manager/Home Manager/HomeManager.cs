@@ -11,9 +11,11 @@ namespace Airbnb.BL;
 public class HomeManager : IHomeManager
 {
     private readonly IPropertyRepo _propertyRepo;
-    public HomeManager(IPropertyRepo propertyRepo)
+    private readonly ICountriesRepositories _CountriesRepositories;
+    public HomeManager(IPropertyRepo propertyRepo , ICountriesRepositories CountriesRepositories)
     {
         _propertyRepo = propertyRepo;
+        _CountriesRepositories= CountriesRepositories;
     }
 
     
@@ -64,7 +66,8 @@ public class HomeManager : IHomeManager
 
         }else if(Search.CountryId != null)
         {
-            PropertiesBeforeFilter = PropertiesBeforeFilter.Where(p => p.City.CounrtyId == Search.CountryId);
+            var Country = _CountriesRepositories.GetcountrywithCities().First(P => P.Id == Search.CountryId);
+            PropertiesBeforeFilter = PropertiesBeforeFilter.Where(p => p.City.CounrtyId==Country.Id);
         }
         if(Search.NumberOfGuests != null)
         {
