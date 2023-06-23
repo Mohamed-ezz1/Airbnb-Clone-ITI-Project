@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Airbnb.BL;
 
-public class postCatogrey
+public interface IHomeManager
 {
-    public int CatogreyId { get; set; }
+    IEnumerable<HomePagePropertyDto> GetAllPropsAsDtos();
+    IEnumerable<HomePageCategoryDto> GetAllCatsAsDtos();
 }

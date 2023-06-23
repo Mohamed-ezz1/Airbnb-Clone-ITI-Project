@@ -3,6 +3,7 @@ using Airbnb.DAl;
 using Airbnb.DAL;
 using Airbnb.DAL.Data;
 using Microsoft.AspNetCore.Identity;
+using Airbnb.DAL.Repositories.GuestsSectionRepo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -37,34 +38,18 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 #endregion
 
-#region Authentication
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = "row"; // For Authentication
-    options.DefaultChallengeScheme = "row"; //To Handle Challenge
-})
-    .AddJwtBearer("row", options =>
-    {
-        //Use this key when validating requests
-        var keyString = builder.Configuration.GetValue<string>("SecretKey");
-        var keyInBytes = Encoding.ASCII.GetBytes(keyString);
-        var key = new SymmetricSecurityKey(keyInBytes);
-
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            IssuerSigningKey = key,
-            ValidateIssuer = false,
-            ValidateAudience = false,
-        };
-    });
-
-#endregion
 
 builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
 builder.Services.AddScoped<IHostSectionManagers, HostSectionManagers>();
 builder.Services.AddScoped<ISearchBarManger, SearchBarManger>();
 builder.Services.AddScoped<ICountriesRepositories, CountriesRepositories>();
+builder.Services.AddScoped<IUserDetailsRepositories, UserDetailsRepositories>();
+builder.Services.AddScoped<IUserMangers, UserMangers>();
+
+builder.Services.AddScoped<IHomeManager, HomeManager>();
+builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

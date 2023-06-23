@@ -283,6 +283,17 @@ public class AircbnbContext : IdentityDbContext
                               TotalPrice = 300.00,
                               BookingDate = DateTime.UtcNow,
                               NumberOfGuests = 2
+                          },
+                                new Booking
+                          {
+                              Id = Guid.NewGuid(),
+                              UserId = users[1].Id,
+                              PropertyId = properties[1].Id,
+                              CheckInDate = DateTime.UtcNow.Date.AddDays(2),
+                              CheckOutDate = DateTime.UtcNow.Date.AddDays(5),
+                              TotalPrice = 300.00,
+                              BookingDate = DateTime.UtcNow,
+                              NumberOfGuests = 2
                           }
                       // Add more seed data as needed
                       };
