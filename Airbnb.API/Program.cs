@@ -73,6 +73,8 @@ builder.Services.AddAuthentication(options =>
 
 #endregion
 
+builder.Services.AddScoped<IGuestSectionManager, GuestSectionManager>();
+builder.Services.AddScoped<IGuestSectionRepo, GuestSectionRepo>();
 builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
 builder.Services.AddScoped<IHostSectionManagers, HostSectionManagers>();
 builder.Services.AddScoped<ISearchBarManger, SearchBarManger>();
