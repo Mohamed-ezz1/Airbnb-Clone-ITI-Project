@@ -60,18 +60,18 @@ public class PropertyManager : IPropertyManager
     //}
 
 
-    public bool AddBooking(AddBookingDto bookingDto)
+    public bool AddBooking(AddBookingDto bookingDto, string userId)
     {
+
         Property? property = _propertyRepo.FindPropertyById(bookingDto.PropertyId);
         if (property == null)
         {
             return false;
         }
-
         Booking booking = new Booking
         {
             Id = Guid.NewGuid(),
-            UserId = bookingDto.UserId,
+            UserId = userId,
             PropertyId = bookingDto.PropertyId,
             CheckInDate = bookingDto.StartDate,
             CheckOutDate = bookingDto.EndDate,
