@@ -20,6 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AircbnbContext>(options =>
  options.UseSqlServer("Server=.; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
 #endregion
+
 #region Identity
 
 //Mainly specify the context and the type of the user that the UserManger will use
@@ -38,7 +39,29 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 #endregion
 
+#region Authentication
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "row"; // For Authentication
+    options.DefaultChallengeScheme = "row"; //To Handle Challenge
+})
+    .AddJwtBearer("row", options =>
+    {
+        //Use this key when validating requests
+        var keyString = builder.Configuration.GetValue<string>("SecretKey");
+        var keyInBytes = Encoding.ASCII.GetBytes(keyString);
+        var key = new SymmetricSecurityKey(keyInBytes);
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            IssuerSigningKey = key,
+            ValidateIssuer = false,
+            ValidateAudience = false,
+        };
+    });
+
+#endregion
 
 builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
 builder.Services.AddScoped<IHostSectionManagers, HostSectionManagers>();
