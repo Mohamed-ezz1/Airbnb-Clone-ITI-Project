@@ -84,7 +84,7 @@ builder.Services.AddScoped<IHstPropertyRepo, HstPropertyRepo>();
 builder.Services.AddScoped<IPropertyDetailsRepo, PropertyDetailsRepo>();
 
 builder.Services.AddScoped<IPropertyManager, PropertyManager>();
-
+builder.Services.AddScoped<IPropertyRepo, IPropertyRepo>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<ICounrtyRepo, CountryRepo>();
 builder.Services.AddScoped<IAmenityRepo, AmenitiesRepo>();
