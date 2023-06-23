@@ -14,12 +14,14 @@ public class PropertyGetUpdateDto
     public int MaxNumberOfGuests { get; set; }
     public int BedroomsCount { get; set; }
     public int BathroomsCount { get; set; }
-    public int PricePerNight { get; set; }
+    public int BedCount { get; set; }
+
+    public double PricePerNight { get; set; }
     public ICollection<CategoryOfUpdateDto> Categories { get; set; } = new List<CategoryOfUpdateDto>();
     public ICollection<CountryOfUpdateDto> Countries { get; set; } = new List<CountryOfUpdateDto>();
    // public ICollection<CityofUpdateDto> Cities { get; set; } = new List<CityofUpdateDto>();
-    public int OldCategoryId { get; set; }
-    public int OldCityId { get; set; }
+    public int? OldCategoryId { get; set; }
+    public int? OldCityId { get; set; }
 
     public string Address { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;

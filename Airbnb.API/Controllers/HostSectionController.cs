@@ -18,7 +18,7 @@ namespace Airbnb.API.Controllers
         // get host
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("/HostBooking/{id}")]
         public ActionResult<IEnumerable<HostBookingsDto>> GetHostBooking( string id )
         {
 
@@ -35,6 +35,7 @@ namespace Airbnb.API.Controllers
 
 
         [HttpGet]
+        [Route("/HostProperty/{id}")]
         public ActionResult<List<HostPropertiesDto>> GetHostProperties(string id)
         {
 

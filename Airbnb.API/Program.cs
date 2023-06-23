@@ -1,14 +1,23 @@
+using Airbnb.BL;
 using Airbnb.DAL;
 using Airbnb.DAL.Data;
 using Microsoft.AspNetCore.Identity;
-using Airbnb.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Airbnb.BL;
 using Airbnb.API;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<ICounrtyRepo, CountryRepo>();
+builder.Services.AddScoped<IAmenityRepo, AmenitiesRepo>();
+builder.Services.AddScoped<IHstPropRepo, HstPropRepo>();
+
+
+builder.Services.AddScoped<IHostPropertyManager,HostPropertyManager>();
+
+
 
 
 builder.Services.AddControllers();
@@ -64,6 +73,8 @@ builder.Services.AddAuthentication(options =>
 
 #endregion
 
+builder.Services.AddScoped<IGuestSectionManager, GuestSectionManager>();
+builder.Services.AddScoped<IGuestSectionRepo, GuestSectionRepo>();
 builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
 builder.Services.AddScoped<IHostSectionManagers, HostSectionManagers>();
 builder.Services.AddScoped<ISearchBarManger, SearchBarManger>();
@@ -72,7 +83,7 @@ builder.Services.AddScoped<IUserDetailsRepositories, UserDetailsRepositories>();
 builder.Services.AddScoped<IUserMangers, UserMangers>();
 
 builder.Services.AddScoped<IHomeManager, HomeManager>();
-builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
+builder.Services.AddScoped<IHstPropertyRepo, HstPropertyRepo>();
 builder.Services.AddScoped<IPropertyDetailsRepo, PropertyDetailsRepo>();
 
 builder.Services.AddScoped<IPropertyManager, PropertyManager>();
@@ -87,7 +98,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
