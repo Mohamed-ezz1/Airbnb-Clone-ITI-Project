@@ -1,7 +1,7 @@
 ﻿using Airbnb.BL;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
-using Airbnb.DAl;
+using Airbnb.DAL;
 
 namespace Airbnb.API;
 

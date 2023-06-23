@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Airbnb.BL;
-using Airbnb.DAl;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

@@ -5,6 +5,8 @@ using Airbnb.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Airbnb.BL;
+using Airbnb.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
