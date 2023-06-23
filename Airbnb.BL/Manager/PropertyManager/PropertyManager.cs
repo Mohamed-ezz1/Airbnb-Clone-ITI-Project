@@ -32,8 +32,8 @@ public class PropertyManager : IPropertyManager
             CityNmae = property.City?.CityName ?? string.Empty,
             CountryNmae = property.City?.Country?.CountryName ?? string.Empty,
             UserName = $"{property.User?.FirstName ?? string.Empty} {property.User?.LasttName ?? string.Empty}",
-            RatingOverroll = property.Reviews.Select(x => x.Rate).Average().ToString(),
-            NumOfReview = property.Reviews.Count(),
+            RatingOverroll = property.Reviews.Any()? property.Reviews.Select(x => x.Rate).Average().ToString(): string.Empty,
+            NumOfReview = property.Reviews.Any()? property.Reviews.Count() : 0,
             Aminties = property.PropertyAmenities.Select(a => new AmintsDTO
             {
                 AmintiesName = a.Amenity?.Name ?? string.Empty,
