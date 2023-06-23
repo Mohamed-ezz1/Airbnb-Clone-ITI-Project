@@ -12,12 +12,12 @@ public class HostPropertyManager : IHostPropertyManager
     private readonly ICategoryRepo _categoryRepo;
     private readonly IAmenityRepo _amenityRepo;
     private readonly ICounrtyRepo _counrtyRepo;
-    private readonly IPropertyRepo _propertyRepo;
+    private readonly IHstPropRepo _propertyRepo;
 
     public HostPropertyManager(ICategoryRepo categoryRepo,
         IAmenityRepo amenityRepo,
         ICounrtyRepo counrtyRepo,
-        IPropertyRepo propertyRepo)
+        IHstPropRepo propertyRepo)
     {
         _categoryRepo = categoryRepo;
         _amenityRepo = amenityRepo;

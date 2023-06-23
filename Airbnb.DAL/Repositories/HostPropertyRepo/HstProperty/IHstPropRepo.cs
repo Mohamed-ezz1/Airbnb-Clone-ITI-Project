@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.DAL;
 
-public interface IPropertyRepo
+public interface IHstPropRepo
 {
     void Add(Property property);
     Property? GetPropertyById(Guid id);

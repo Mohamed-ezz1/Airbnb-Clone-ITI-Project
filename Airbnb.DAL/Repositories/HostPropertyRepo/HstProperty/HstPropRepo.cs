@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Airbnb.DAL;
 
-public class PropertyRepo: IPropertyRepo
+public class HstPropRepo : IHstPropRepo
 {
     private readonly AircbnbContext _aircbnbContext;
 
-    public PropertyRepo(AircbnbContext aircbnbContext)
+    public HstPropRepo(AircbnbContext aircbnbContext)
     {
         _aircbnbContext = aircbnbContext;
     }
