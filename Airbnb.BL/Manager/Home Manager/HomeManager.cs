@@ -48,4 +48,34 @@ public class HomeManager : IHomeManager
             });
         return catsDto;
     }
-}
+
+    public IEnumerable<HomePagePropertyDto> FilteredProperties(Query Search)
+    {
+
+        var PropertiesBeforeFilter=  _propertyRepo.GetAllProps() ;
+        if (Search.CatogreyId != null)
+        {
+
+            PropertiesBeforeFilter = PropertiesBeforeFilter.Where(p => p.CategoryId == Search.CatogreyId);
+        }
+        if(Search.CityId != null)
+        {
+
+            PropertiesBeforeFilter = PropertiesBeforeFilter.Where(p => p.CityId == Search.CityId);
+
+        }else if(Search.CountryId != null)
+        {
+            PropertiesBeforeFilter = PropertiesBeforeFilter.Where(p => p.City.CounrtyId == Search.CountryId);
+        }
+        if(Search.NumberOfGuests != null)
+        {
+            PropertiesBeforeFilter = PropertiesBeforeFilter.Where(p =>   Search.NumberOfGuests <= p.MaximumNumberOfGuests);
+        }
+
+        List<HomePagePropertyDto> newhomePageProperty = PropertiesBeforeFilter.Select(p => new HomePagePropertyDto { CityName = p.City.CityName, CountryName=p.City.Country.CountryName , ImgUrl= p.PropertyImages.Select(P=>P.Image).ToList(), PricePerNight=p.PricePerNight , PropertyId=p.Id, PropertyName=p.Name}).ToList();
+        return newhomePageProperty;
+
+    }
+   
+    }
+

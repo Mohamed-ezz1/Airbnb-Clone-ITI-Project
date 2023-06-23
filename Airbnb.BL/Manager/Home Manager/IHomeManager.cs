@@ -10,4 +10,5 @@ public interface IHomeManager
 {
     IEnumerable<HomePagePropertyDto> GetAllPropsAsDtos();
     IEnumerable<HomePageCategoryDto> GetAllCatsAsDtos();
+    IEnumerable<HomePagePropertyDto> FilteredProperties(Query Search );
 }
