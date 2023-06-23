@@ -19,7 +19,7 @@ public class GuestSectionRepo : IGuestSectionRepo
         _context = context;
     }
 
-    public Booking GetGuestBooking(Guid BookTd)
+    public Booking? GetGuestBooking(Guid BookTd)
     {
         return _context.Bookings.Where(p => p.Id == BookTd).FirstOrDefault();
 

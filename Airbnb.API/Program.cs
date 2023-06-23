@@ -3,7 +3,7 @@ using Airbnb.DAl;
 using Airbnb.DAL;
 using Airbnb.DAL.Data;
 using Microsoft.AspNetCore.Identity;
-using Airbnb.DAL.Repositories.GuestsSectionRepo;
+using Airbnb.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -84,6 +84,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
