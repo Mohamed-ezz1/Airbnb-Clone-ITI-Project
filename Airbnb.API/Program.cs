@@ -51,7 +51,7 @@ builder.Services.AddAuthentication(options =>
     {
         //Use this key when validating requests
         var keyString = builder.Configuration.GetValue<string>("SecretKey");
-        var keyInBytes = Encoding.ASCII.GetBytes(keyString);
+        var keyInBytes = Encoding.ASCII.GetBytes(keyString!);
         var key = new SymmetricSecurityKey(keyInBytes);
 
         options.TokenValidationParameters = new TokenValidationParameters

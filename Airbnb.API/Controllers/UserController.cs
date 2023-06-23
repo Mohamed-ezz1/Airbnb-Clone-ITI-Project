@@ -9,6 +9,7 @@ using Airbnb.DAL;
 using Airbnb.BL;
 using Microsoft.Extensions.Configuration;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Airbnb.API.Controllers
 {
@@ -22,14 +23,14 @@ namespace Airbnb.API.Controllers
         public UserController(IConfiguration configuration, UserManager<User> userManager)
         {
             _configuration = configuration;
-          _userManager = userManager;
+            _userManager = userManager;
         }
 
         #region Register
 
         [HttpPost]
         [Route("Register")]
-        public ActionResult RegisterAsAppUser(RegisterDto  registerDto)
+        public async Task<ActionResult> RegisterAsAppUser(RegisterDto registerDto)
         {
             var user = new User
             {
@@ -39,24 +40,22 @@ namespace Airbnb.API.Controllers
                 Email = registerDto.Email,
             };
 
-            //.Result to overcome async
-            var creationResult = _userManager.CreateAsync(user, registerDto.Password).Result;
+            var creationResult = await _userManager.CreateAsync(user, registerDto.Password);
             if (!creationResult.Succeeded)
             {
                 return BadRequest(creationResult.Errors);
             }
 
             var claims = new List<Claim>
-        {
-            new (ClaimTypes.NameIdentifier, user.Id),
-        };
+            {
+                new (ClaimTypes.NameIdentifier, user.Id),
+            };
 
-            var addingClaimsResult = _userManager.AddClaimsAsync(user, claims).Result;
+            var addingClaimsResult = await _userManager.AddClaimsAsync(user, claims);
             if (!addingClaimsResult.Succeeded)
             {
                 return BadRequest(addingClaimsResult.Errors);
             }
-
 
             return NoContent();
         }
@@ -67,32 +66,32 @@ namespace Airbnb.API.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public ActionResult<TokenDto> Login(LoginDto credentials)
+        public async Task<ActionResult<TokenDto>> Login(LoginDto credentials)
         {
-           var user = _userManager.FindByNameAsync(credentials.UserName).Result;
+            var user = await _userManager.FindByNameAsync(credentials.UserName);
             if (user == null)
             {
                 return BadRequest();
             }
 
-            bool isPasswordCorrect = _userManager.CheckPasswordAsync(user, credentials.Password).Result;
+            bool isPasswordCorrect = await _userManager.CheckPasswordAsync(user, credentials.Password);
             if (!isPasswordCorrect)
             {
                 return BadRequest();
             }
 
-            List<Claim> claimsList = _userManager.GetClaimsAsync(user).Result.ToList();
+            List<Claim> claimsList = (await _userManager.GetClaimsAsync(user)).ToList();
 
             var keyString = _configuration.GetValue<string>("SecretKey");
             var keyInBytes = Encoding.ASCII.GetBytes(keyString!);
             var key = new SymmetricSecurityKey(keyInBytes);
 
-            //Hashing Criteria 
+            // Hashing Criteria 
             SigningCredentials signingCredentials = new SigningCredentials(key,
                 SecurityAlgorithms.HmacSha256Signature);
 
-            //Putting All together
-            DateTime exp = DateTime.Now.AddMinutes(20);
+            // Putting All together
+            DateTime exp = DateTime.Now.AddMinutes(60);
             JwtSecurityToken token = new JwtSecurityToken(
                     claims: claimsList,
                     signingCredentials: signingCredentials,
@@ -110,6 +109,5 @@ namespace Airbnb.API.Controllers
         }
 
         #endregion
-
     }
 }

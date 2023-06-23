@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
+using System.Security.Claims;
 using Airbnb.BL;
+using Airbnb.DAL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,14 +12,17 @@ namespace Airbnb.API.Controllers
     public class PropertyController : ControllerBase
     {
         private readonly IPropertyManager _propertyManager;
-        public PropertyController(IPropertyManager propertyManager)
+        private readonly IUserMangers _userMangers;
+
+        public PropertyController(IPropertyManager propertyManager, IUserMangers userMangers)
         {
             _propertyManager = propertyManager;
+            _userMangers = userMangers;
         }
-        
+
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<GetPropertyDetailsDto> GetPropertyById(Guid id) 
+        public ActionResult<GetPropertyDetailsDto> GetPropertyById(Guid id)
         {
             GetPropertyDetailsDto? Property = _propertyManager.FindPropertyById(id);
             if (Property == null)
@@ -31,7 +36,12 @@ namespace Airbnb.API.Controllers
         [Route("Booking")]
         public IActionResult Add(AddBookingDto booking)
         {
-            bool isBookingAdded = _propertyManager.AddBooking(booking);
+            if (User?.Identity?.IsAuthenticated != true)
+            {
+                return BadRequest("No users login");
+            }
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            bool isBookingAdded = _propertyManager.AddBooking(booking, userId!);
             if (isBookingAdded)
             {
                 return StatusCode(StatusCodes.Status201Created);
