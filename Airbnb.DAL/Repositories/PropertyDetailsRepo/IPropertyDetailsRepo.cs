@@ -10,7 +10,8 @@ public interface IPropertyDetailsRepo
 {
     Property? FindPropertyById(Guid id);
 
-     void Add(Booking booking);
+    bool Add(Booking booking);
+    bool IsBookingDateRangeOverlap(Booking newBooking);
     IEnumerable<Booking> GetBookingsByPropertyId(Guid propertyId);
     int SaveChanges();
 }

@@ -46,27 +46,28 @@ public class PropertyManager : IPropertyManager
 
     }
 
-    public IEnumerable<BookingDto> GetBookingsByPropertyId(Guid propertyId)
-    {
-        IEnumerable<Booking> bookings = _propertyRepo.GetBookingsByPropertyId(propertyId);
-        // Map bookings to BookingDto objects
-        IEnumerable<BookingDto> bookingDtos = bookings.Select(booking => new BookingDto
-        {
-            CheckInDate = booking.CheckInDate,
-            CheckOutDate = booking.CheckOutDate
-        });
+    //public IEnumerable<BookingDto> GetBookingsByPropertyId(Guid propertyId)
+    //{
+    //    IEnumerable<Booking> bookings = _propertyRepo.GetBookingsByPropertyId(propertyId);
+    //    // Map bookings to BookingDto objects
+    //    IEnumerable<BookingDto> bookingDtos = bookings.Select(booking => new BookingDto
+    //    {
+    //        CheckInDate = booking.CheckInDate,
+    //        CheckOutDate = booking.CheckOutDate
+    //    });
 
-        return bookingDtos;
-    }
+    //    return bookingDtos;
+    //}
 
 
-    public void AddBooking(AddBookingDto bookingDto)
+    public bool AddBooking(AddBookingDto bookingDto)
     {
         Property? property = _propertyRepo.FindPropertyById(bookingDto.PropertyId);
         if (property == null)
         {
-            return;
+            return false;
         }
+
         Booking booking = new Booking
         {
             Id = Guid.NewGuid(),
@@ -75,10 +76,20 @@ public class PropertyManager : IPropertyManager
             CheckInDate = bookingDto.StartDate,
             CheckOutDate = bookingDto.EndDate,
             NumberOfGuests = bookingDto.NumOfGuest,
-            TotalPrice = /*bookingDto.NumOfNight */property.PricePerNight * (bookingDto.EndDate - bookingDto.StartDate).TotalDays,
+            TotalPrice = property.PricePerNight * (bookingDto.EndDate - bookingDto.StartDate).TotalDays,
         };
-        _propertyRepo.Add(booking);
-        _propertyRepo.SaveChanges();
+
+        bool isAdded = _propertyRepo.Add(booking);
+        if (isAdded)
+        {
+            _propertyRepo.SaveChanges();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
+
 
 }

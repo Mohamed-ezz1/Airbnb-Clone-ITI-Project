@@ -5,24 +5,36 @@ using Airbnb.DAL;
 
 namespace Airbnb.API;
 
-public class NoCollidingDateRangeAttribute : ActionFilterAttribute
-{
-    public override void OnActionExecuting(ActionExecutingContext context)
-    {
-        var bookingDto = context.ActionArguments["booking"] as AddBookingDto;
+//public class NoCollidingDateRangeAttribute : ActionFilterAttribute
+//{
+//    private readonly IPropertyManager _propertyManager;
 
-        if (bookingDto != null)
-        {
-            IEnumerable<Booking>? propertyBookings = context.HttpContext.Items["PropertyBookings"] as IEnumerable<Booking>;
+//    public NoCollidingDateRangeAttribute(IPropertyManager propertyManager)
+//    {
+//        _propertyManager = propertyManager;
+//    }
 
-            if (propertyBookings != null && propertyBookings.Any(range =>
-                bookingDto.StartDate < range.CheckOutDate && bookingDto.EndDate > range.CheckInDate))
-            {
-                context.ModelState.AddModelError("Booking", "The booking date range is colliding with existing bookings.");
-            }
-        }
+//    public override void OnActionExecuting(ActionExecutingContext context)
+//    {
+//        var bookingDto = context.ActionArguments["booking"] as AddBookingDto;
 
-        base.OnActionExecuting(context);
-    }
-}
+//        if (bookingDto != null)
+//        {
+//            IEnumerable<BookingDto> propertyBookings = _propertyManager.GetBookingsByPropertyId(bookingDto.PropertyId);
+
+//            if (propertyBookings != null && propertyBookings.Any(range =>
+//                (bookingDto.StartDate < range.CheckOutDate && bookingDto.EndDate > range.CheckInDate) ||
+//                (bookingDto.StartDate < range.CheckInDate && bookingDto.EndDate > range.CheckInDate) ||
+//                (bookingDto.StartDate < range.CheckOutDate && bookingDto.EndDate > range.CheckOutDate) ||
+//                (bookingDto.StartDate == range.CheckInDate && bookingDto.EndDate == range.CheckInDate) ||
+//                (bookingDto.StartDate == range.CheckOutDate && bookingDto.EndDate == range.CheckOutDate)))
+//            {
+//                context.ModelState.AddModelError("Booking", "The booking date range is colliding with existing bookings.");
+//            }
+//        }
+
+//        base.OnActionExecuting(context);
+//    }
+//}
+
 

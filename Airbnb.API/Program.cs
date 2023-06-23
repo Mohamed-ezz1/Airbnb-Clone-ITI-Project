@@ -36,14 +36,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.User.RequireUniqueEmail = true;
 })
     .AddEntityFrameworkStores<AircbnbContext>();
-#region Ezz
-builder.Services.AddScoped<IPropertyDetailsRepo, PropertyDetailsRepo>();
 
-builder.Services.AddScoped<IPropertyManager, PropertyManager>();
-builder.Services.AddScoped<NoCollidingDateRangeAttribute>();
-
-
-#endregion
 
 #endregion
 
@@ -80,6 +73,10 @@ builder.Services.AddScoped<IUserMangers, UserMangers>();
 
 builder.Services.AddScoped<IHomeManager, HomeManager>();
 builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
+builder.Services.AddScoped<IPropertyDetailsRepo, PropertyDetailsRepo>();
+
+builder.Services.AddScoped<IPropertyManager, PropertyManager>();
+//builder.Services.AddScoped<NoCollidingDateRangeAttribute>();
 
 var app = builder.Build();
 

@@ -28,15 +28,19 @@ namespace Airbnb.API.Controllers
         }
 
         [HttpPost]
-        [NoCollidingDateRange]
-        public ActionResult Add(AddBookingDto booking)
+        [Route("Booking")]
+        public IActionResult Add(AddBookingDto booking)
         {
-            if (!ModelState.IsValid)
+            bool isBookingAdded = _propertyManager.AddBooking(booking);
+            if (isBookingAdded)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status201Created);
             }
-            _propertyManager.AddBooking(booking);
-            return StatusCode(StatusCodes.Status201Created);
+            else
+            {
+                return BadRequest("The booking date range is colliding with existing bookings.");
+            }
         }
+
     }
 }

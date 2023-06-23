@@ -30,14 +30,17 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
             .ThenInclude(x => x.Amenity)
             .FirstOrDefault(x => x.Id == id);
     }
-    public void Add(Booking booking)
-    {
-        _Context.Set<Booking>().Add(booking);
-    }
 
-    public int SaveChanges()
+    public bool Add(Booking booking)
     {
-        return _Context.SaveChanges();
+        if (IsBookingDateRangeOverlap(booking))
+        {
+            return false; // Return false if there is a date range overlap
+        }
+
+        _Context.Set<Booking>().Add(booking);
+        _Context.SaveChanges();
+        return true;
     }
 
     public IEnumerable<Booking> GetBookingsByPropertyId(Guid propertyId)
@@ -46,5 +49,22 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
        .Where(booking => booking.PropertyId == propertyId)
        .ToList();
         return bookings;
+    }
+
+
+    public bool IsBookingDateRangeOverlap(Booking newBooking)
+    {
+        IEnumerable<Booking> propertyBookings = GetBookingsByPropertyId((Guid)newBooking.PropertyId);
+
+        return propertyBookings.Any(existingBooking =>
+            (newBooking.CheckInDate < existingBooking.CheckOutDate && newBooking.CheckOutDate > existingBooking.CheckInDate) ||
+            (newBooking.CheckInDate < existingBooking.CheckInDate && newBooking.CheckOutDate > existingBooking.CheckInDate) ||
+            (newBooking.CheckInDate < existingBooking.CheckOutDate && newBooking.CheckOutDate > existingBooking.CheckOutDate) 
+        );
+    }
+
+    public int SaveChanges()
+    {
+        return _Context.SaveChanges();
     }
 }

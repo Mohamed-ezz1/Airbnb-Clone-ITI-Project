@@ -9,6 +9,6 @@ namespace Airbnb.BL;
 public interface IPropertyManager
 {
     GetPropertyDetailsDto? FindPropertyById(Guid propertyId);
-    void AddBooking(AddBookingDto bookingDto);
-    public IEnumerable<BookingDto> GetBookingsByPropertyId(Guid propertyId);
+    public bool AddBooking(AddBookingDto bookingDto);
+    //public IEnumerable<BookingDto> GetBookingsByPropertyId(Guid propertyId);
 }
