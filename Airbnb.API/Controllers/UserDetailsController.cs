@@ -21,7 +21,6 @@ namespace Airbnb.API.Controllers
 
 
         [HttpGet]
-        ///  [ActionName("UserType")]
         [Route("UserType/{id}")]
 
         public ActionResult<string> GetUserType(string id) {

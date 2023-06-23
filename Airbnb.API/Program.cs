@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AircbnbContext>(options =>
- options.UseSqlServer("Server=DESKTOP-34KGDF7\\MSSQLSERVER01; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
+ options.UseSqlServer("Server=.; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
 
 
 builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
