@@ -1,5 +1,4 @@
 using Airbnb.BL;
-using Airbnb.DAl;
 using Airbnb.DAL;
 using Airbnb.DAL.Data;
 using Microsoft.AspNetCore.Identity;

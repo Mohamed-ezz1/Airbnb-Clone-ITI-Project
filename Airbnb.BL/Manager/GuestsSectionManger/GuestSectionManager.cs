@@ -1,6 +1,5 @@
 ﻿using Airbnb.BL;
-using Airbnb.DAl;
-using Airbnb.DAL.Repositories.GuestsSectionRepo;
+using Airbnb.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;

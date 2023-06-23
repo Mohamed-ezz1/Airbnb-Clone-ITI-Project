@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Airbnb.DAL;
 using Microsoft.AspNetCore.Identity;
 
-namespace Airbnb.DAl;
+namespace Airbnb.DAL;
 
 public class User: IdentityUser
 {

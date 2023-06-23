@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airbnb.DAl;
+namespace Airbnb.DAL;
 
 public class PropertyAmenity
 {
