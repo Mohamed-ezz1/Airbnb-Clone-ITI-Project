@@ -25,7 +25,6 @@ builder.Services.AddScoped<ISearchBarManger, SearchBarManger>();
 builder.Services.AddScoped<ICountriesRepositories, CountriesRepositories>();
 builder.Services.AddScoped<IUserDetailsRepositories, UserDetailsRepositories>();
 builder.Services.AddScoped<IUserMangers, UserMangers>();
- options.UseSqlServer("Server=.; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
 
 builder.Services.AddScoped<IHomeManager, HomeManager>();
 builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
