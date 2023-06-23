@@ -33,5 +33,31 @@ namespace Airbnb.API.Controllers
         
         
         }
+
+        [HttpGet]
+        public ActionResult<GuestProfileReedDTO> GuestProfileRead(string UserId)
+        {
+            GuestProfileReedDTO GuestProfile = userMangers.GuestProfileRead(UserId);
+
+            return GuestProfile;
+
+
+        }
+
+
+        [HttpPut]
+
+        public ActionResult<GuestProfileReedDTO> GuestProfileUpdate(GuestProfileUpdateDto GuestInfo)
+        {
+            bool isSuccessful = userMangers.UpdateGuestInfo(GuestInfo);
+            if (!isSuccessful)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
+
+        }
+
     }
 }

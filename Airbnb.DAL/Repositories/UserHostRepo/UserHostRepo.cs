@@ -1,5 +1,4 @@
-﻿using Airbnb.DAl;
-using Airbnb.DAL.Data;
+﻿using Airbnb.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -37,5 +36,8 @@ namespace Airbnb.DAL
 
             
         }
+
+  
+
     }
 }

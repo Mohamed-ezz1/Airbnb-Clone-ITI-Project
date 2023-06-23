@@ -1,8 +1,12 @@
-using Airbnb.BL;
 using Airbnb.DAL;
 using Airbnb.DAL.Data;
-using Airbnb.DAL.Repositories.GuestsSectionRepo;
+using Microsoft.AspNetCore.Identity;
+using Airbnb.DAL;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Airbnb.BL;
+using Airbnb.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +16,53 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+#region DataBase
 builder.Services.AddDbContext<AircbnbContext>(options =>
- options.UseSqlServer("Server=DESKTOP-34KGDF7\\MSSQLSERVER01; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
+ options.UseSqlServer("Server=.; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
+#endregion
 
-builder.Services.AddScoped<IGuestSectionManager, GuestSectionManager>();
-builder.Services.AddScoped<IGuestSectionRepo, GuestSectionRepo>();
+#region Identity
 
+//Mainly specify the context and the type of the user that the UserManger will use
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequiredUniqueChars = 3;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 3;
+
+    options.User.RequireUniqueEmail = true;
+})
+    .AddEntityFrameworkStores<AircbnbContext>();
+
+
+#endregion
+
+#region Authentication
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "row"; // For Authentication
+    options.DefaultChallengeScheme = "row"; //To Handle Challenge
+})
+    .AddJwtBearer("row", options =>
+    {
+        //Use this key when validating requests
+        var keyString = builder.Configuration.GetValue<string>("SecretKey");
+        var keyInBytes = Encoding.ASCII.GetBytes(keyString);
+        var key = new SymmetricSecurityKey(keyInBytes);
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            IssuerSigningKey = key,
+            ValidateIssuer = false,
+            ValidateAudience = false,
+        };
+    });
+
+#endregion
 
 builder.Services.AddScoped<IUserHostRepo, UserHostRepo>();
 builder.Services.AddScoped<IHostSectionManagers, HostSectionManagers>();
@@ -28,6 +73,10 @@ builder.Services.AddScoped<IUserMangers, UserMangers>();
 
 builder.Services.AddScoped<IHomeManager, HomeManager>();
 builder.Services.AddScoped<IPropertyRepo, PropertyRepo>();
+builder.Services.AddScoped<IPropertyDetailsRepo, PropertyDetailsRepo>();
+
+builder.Services.AddScoped<IPropertyManager, PropertyManager>();
+//builder.Services.AddScoped<NoCollidingDateRangeAttribute>();
 
 var app = builder.Build();
 
@@ -40,6 +89,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -16,3 +16,9 @@ public class AddBookingDto
     public int NumOfGuest { get; set; }
     public int NumOfNight { get; set; }
 }
+
+public class BookingDto
+{
+    public DateTime CheckInDate { get; set; }
+    public DateTime CheckOutDate { get; set; }
+}

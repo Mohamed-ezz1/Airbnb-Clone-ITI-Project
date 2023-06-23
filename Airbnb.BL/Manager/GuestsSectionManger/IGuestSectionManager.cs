@@ -13,8 +13,6 @@ public interface IGuestSectionManager
 
 
     public IEnumerable<GuestBookingsHistory>? GetGuestBookings(string userTD);
-    //GuestProfileReedDTO GuestProfileRead(string userId);
-
     public bool Remove(Guid booking);
    
 }

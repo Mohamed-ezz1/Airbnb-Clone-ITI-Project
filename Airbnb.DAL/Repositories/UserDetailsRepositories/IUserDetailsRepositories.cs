@@ -8,6 +8,10 @@ using System.Threading.Tasks;
     {
     public interface IUserDetailsRepositories
     {
+        User GetUesrInfo(string userId);
         UserType GetUserType(string Id);
+        User GuestProfileRead(string userId);
+        int SaveChanges();
+
     }
 }
