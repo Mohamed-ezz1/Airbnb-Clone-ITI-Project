@@ -7,46 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airbnb.DAL.Repositories.GuestsSectionRepo
+namespace Airbnb.DAL;
+
+public class GuestSectionRepo : IGuestSectionRepo
 {
-    public class GuestSectionRepo : IGuestSectionRepo
+
+    private readonly AircbnbContext _context;
+
+    public GuestSectionRepo(AircbnbContext context)
+    {
+        _context = context;
+    }
+
+    public Booking GetGuestBooking(Guid BookTd)
+    {
+        return _context.Bookings.Where(p => p.Id == BookTd).FirstOrDefault();
+
+    }
+
+
+    public IEnumerable<Booking> GetGuestBookings(string UserTd)
+    {
+        return _context.Bookings
+            .Include(p =>p.Property)
+            .Include(p=>p.User)
+            .Where(p => p.UserId == UserTd).ToList();
+    }
+
+
+    public void RemoveFromDB(Guid booking)
     {
 
-        private readonly AircbnbContext _context;
-
-        public GuestSectionRepo(AircbnbContext context)
-        {
-            _context = context;
-        }
-
-        public Booking GetGuestBooking(Guid BookTd)
-        {
-            return _context.Bookings.Where(p => p.Id == BookTd).FirstOrDefault();
-
-        }
+        _context.Bookings.Where(p => p.Id == booking)
+            .ExecuteDelete();
 
 
-        public IEnumerable<Booking> GetGuestBookings(string UserTd)
-        {
-            return _context.Bookings
-                .Include(p =>p.Property)
-                .Include(p=>p.User)
-                .Where(p => p.UserId == UserTd).ToList();
-        }
+    }
 
-    
-        public void RemoveFromDB(Guid booking)
-        {
-
-            _context.Bookings.Where(p => p.Id == booking)
-                .ExecuteDelete();
-
-
-        }
-
-        public int SaveChanges()
-        {
-            return _context.SaveChanges();
-        }
+    public int SaveChanges()
+    {
+        return _context.SaveChanges();
     }
 }
