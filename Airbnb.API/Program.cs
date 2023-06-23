@@ -1,4 +1,3 @@
-using Airbnb.BL;
 using Airbnb.DAL;
 using Airbnb.DAL.Data;
 using Microsoft.AspNetCore.Identity;
@@ -35,6 +34,14 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.User.RequireUniqueEmail = true;
 })
     .AddEntityFrameworkStores<AircbnbContext>();
+#region Ezz
+builder.Services.AddScoped<IPropertyDetailsRepo, PropertyDetailsRepo>();
+
+builder.Services.AddScoped<IPropertyManager, PropertyManager>();
+builder.Services.AddScoped<NoCollidingDateRangeAttribute>();
+
+
+#endregion
 
 #endregion
 

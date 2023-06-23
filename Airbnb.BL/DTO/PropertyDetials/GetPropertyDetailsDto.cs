@@ -18,7 +18,7 @@ public class GetPropertyDetailsDto
     public string UserImage { get; set; } = string.Empty;
     public int MaxNumOfGust { get; set; }
     public int BedRoomCount { get; set; }
-    public decimal PricePerNight { get; set; }
+    public double PricePerNight { get; set; }
     public string PropertyDescription { get; set; } = string.Empty;
     public ICollection<AmintsDTO> Aminties { get; set; } =new List<AmintsDTO>();    
 
