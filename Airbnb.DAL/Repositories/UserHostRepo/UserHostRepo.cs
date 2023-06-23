@@ -26,6 +26,16 @@ namespace Airbnb.DAL
 
         }
 
-        
+        public IEnumerable<Property> GetHostPropertiesDB(string id)
+        {
+   
+                return _aircbnbContext.Properties
+                    .Include(p => p.User)
+                    .Include(p => p.City)
+                        .ThenInclude(p => p.Country)
+                    .Where(p => p.UserId == id);
+
+            
+        }
     }
 }

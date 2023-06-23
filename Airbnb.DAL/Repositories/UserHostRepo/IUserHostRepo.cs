@@ -11,5 +11,8 @@ namespace Airbnb.DAL
     {
         IEnumerable<Booking>  GetHostBookingBD(string id);
 
+        IEnumerable<Property> GetHostPropertiesDB(string id);
+
+
     }
 }

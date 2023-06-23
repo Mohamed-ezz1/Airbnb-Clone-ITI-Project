@@ -12,12 +12,10 @@ namespace Airbnb.BL
     public class HostSectionManagers : IHostSectionManagers
     {
         private readonly IUserHostRepo _userHostRepo;
-        private readonly IPropertyHost _propertyHost;
 
-        public HostSectionManagers(IUserHostRepo userHostRepo , IPropertyHost propertyHost )
+        public HostSectionManagers(IUserHostRepo userHostRepo )
         {
             _userHostRepo = userHostRepo;
-           _propertyHost = propertyHost;
         }
         public IEnumerable<HostBookingsDto> GetHostBooking(string id)
         {
@@ -37,16 +35,18 @@ namespace Airbnb.BL
 
         public IEnumerable<HostPropertiesDto> GetHostProperties(string id)
         {
-            IEnumerable<Property> hostPropery = _propertyHost.GetHostPropertiesDB(id);
+            IEnumerable<Property> hostPropery = _userHostRepo.GetHostPropertiesDB(id);
             
             IEnumerable<HostPropertiesDto> hostBookingsDtos = hostPropery.Select(p => new HostPropertiesDto
             {
+
+              PropertyId=p.Id,
               PropertyName = p.Name,
               MaxGuests = p.MaximumNumberOfGuests,
               Price = p.PricePerNight,
               CityName = p.City.CityName,
               CountryName = p.City.Country.CountryName,
-                Street = p.Address 
+              Street = p.Address 
 
             });
 
