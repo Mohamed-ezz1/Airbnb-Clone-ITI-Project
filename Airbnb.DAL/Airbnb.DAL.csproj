@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="microsoft.aspnetcore.identity" Version="2.2.0" />
     <PackageReference Include="microsoft.aspnetcore.identity.EntityFrameworkCore" Version="7.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.7" />

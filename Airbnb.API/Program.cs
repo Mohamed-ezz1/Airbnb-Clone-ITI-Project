@@ -1,5 +1,7 @@
+using Airbnb.BL;
 using Airbnb.DAL;
 using Airbnb.DAL.Data;
+using Airbnb.DAL.Repositories.GuestsSectionRepo;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AircbnbContext>(options =>
  options.UseSqlServer("Server=.; Database=AirBnb; Trusted_Connection=true; Encrypt=false;"));
+
+builder.Services.AddScoped<IGuestSectionManager, GuestSectionManager>();
+builder.Services.AddScoped<IGuestSectionRepo, GuestSectionRepo>();
 
 
 var app = builder.Build();
