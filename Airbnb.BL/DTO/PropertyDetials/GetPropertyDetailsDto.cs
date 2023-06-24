@@ -10,28 +10,31 @@ public class GetPropertyDetailsDto
 {
     public string NameOfProperty { get; set; } = string.Empty;
     public string RatingOverroll { get; set; } = string.Empty;
+    public int MaxNumOfGuest { get; set; }
     public int NumOfReview { get; set; }
     public string CityNmae { get; set; } = string.Empty;
     public string CountryNmae { get; set; } = string.Empty;
-    public ICollection<string> Imgs { get; set; } = new List<string>();    
+    public IEnumerable<string> Imgs { get; set; } = new List<string>();    
     public string UserName { get; set; } = string.Empty;
     public string UserImage { get; set; } = string.Empty;
-    public int MaxNumOfGust { get; set; }
     public int BedRoomCount { get; set; }
     public double PricePerNight { get; set; }
     public string PropertyDescription { get; set; } = string.Empty;
-    public ICollection<AmintsDTO> Aminties { get; set; } =new List<AmintsDTO>();    
+    public IEnumerable<AmintsDTO> Aminties { get; set; } =new HashSet<AmintsDTO>();
+    public IEnumerable<PropertyBookingDates> BookingDates { get; set; } = new HashSet<PropertyBookingDates>();
+};
 
+public class PropertyBookingDates
+{
+    public DateTime CheckInDate { get; set; } = DateTime.Now;
+    public DateTime CheckOutDate { get; set; } = DateTime.Now;
 
 }
 
 
 
-
-
 public class AmintsDTO
 {
-
     public string AmintiesName { get; set; } = string.Empty;
     public string Icon { get; set; } = string.Empty;
 
