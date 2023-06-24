@@ -43,7 +43,7 @@ public class HomeManager : IHomeManager
             {
                 CategoryId = c.Id,
                 CategoryName = c.Name,
-                //CategoryIcon = c.Icon
+                CategoryIcon = c.Icon
             });
         return catsDto;
     }
