@@ -25,7 +25,7 @@ namespace Airbnb.BL
                  PropertyName = x.Property.Name,
                  CheckInDate = x.CheckInDate,
                  CheckOutDate = x.CheckOutDate,
-                 TotalPrice = x.TotalPrice,
+                 TotalPrice = x.TotalPrice, 
 
             });
 
@@ -45,7 +45,8 @@ namespace Airbnb.BL
               Price = p.PricePerNight,
               CityName = p.City.CityName,
               CountryName = p.City.Country.CountryName,
-              Street = p.Address 
+              Adress = p.Address , 
+                OverAllRrating = p.OverALLReview
 
             });
 

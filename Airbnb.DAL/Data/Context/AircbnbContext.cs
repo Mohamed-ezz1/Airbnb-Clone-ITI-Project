@@ -37,11 +37,13 @@ public class AircbnbContext : IdentityDbContext
         base.OnModelCreating(Builder);
 
         Builder.Entity<IdentityUser>().UseTptMappingStrategy();
-
+        #region Rule
+        Builder.Entity<Rule>().Property(p => p.RuleName).HasMaxLength(100);
+        #endregion
 
         #region Propery
 
-        Builder.Entity<Property>()
+       Builder.Entity<Property>()
             .HasOne(x => x.User)
             .WithMany(b => b.UserProperties)
             .HasForeignKey(y=> y.UserId);
@@ -90,10 +92,13 @@ public class AircbnbContext : IdentityDbContext
         Builder.Entity<Booking>().HasIndex(p => new {p.UserId, p.PropertyId , p.CheckInDate}).IsUnique();
         Builder.Entity<Booking>().HasOne(p => p.Property).WithMany(p => p.PropertyBookings).HasForeignKey(p => p.PropertyId);
         Builder.Entity<Booking>().HasOne(p => p.User).WithMany(p => p.UserBookings).HasForeignKey(p => p.UserId);
+      
+        
         #endregion
 
         #region Users
-
+        Builder.Entity<User>().Property(p => p.FirstName).HasMaxLength(30).IsRequired();
+        Builder.Entity<User>().Property(p => p.LasttName).HasMaxLength(30).IsRequired();
 
         #endregion
 
@@ -106,6 +111,8 @@ public class AircbnbContext : IdentityDbContext
         #region Propery_img
         Builder.Entity<PropertyImage>().HasOne(p=>p.Property).WithMany(p=>p.PropertyImages).HasForeignKey(p => p.PropertyId); 
         Builder.Entity<PropertyImage>().HasOne(P=>P.User).WithMany(P=>P.UserPropertyImages).HasForeignKey(p => p.UserId);
+      
+        
         #endregion
 
         #region review 
@@ -113,8 +120,7 @@ public class AircbnbContext : IdentityDbContext
         Builder.Entity<Review>().HasOne(p => p.Property).WithMany(p => p.Reviews).HasForeignKey(p => p.PropertyId);
         Builder.Entity<Review>().HasOne(p => p.Booking).WithMany(p => p.Reviews).HasForeignKey(p => p.BookingId);
          Builder.Entity<Review>().HasKey(p =>new { p.BookingId ,p.PropertyId,p.UserId});
-
-
+        Builder.Entity<Review>().Property(p => p.Comment).HasMaxLength(500);
         #endregion
 
 

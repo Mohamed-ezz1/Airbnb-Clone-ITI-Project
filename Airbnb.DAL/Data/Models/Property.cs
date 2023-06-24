@@ -39,6 +39,6 @@ public class Property
     public int? CityId { get; set; }
     public City? City { get; set; }
      public int NumberOfReview { get; set; }
-    [Range(0,5)]
+    [Range(0.0,5.0)]
     public double OverALLReview { get; set; }
 }
