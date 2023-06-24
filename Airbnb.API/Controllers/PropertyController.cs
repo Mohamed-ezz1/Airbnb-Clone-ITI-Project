@@ -48,7 +48,7 @@ namespace Airbnb.API.Controllers
             }
             else
             {
-                return BadRequest("The booking date range is colliding with existing bookings.");
+                return BadRequest("Booking cant be added");
             }
         }
 
