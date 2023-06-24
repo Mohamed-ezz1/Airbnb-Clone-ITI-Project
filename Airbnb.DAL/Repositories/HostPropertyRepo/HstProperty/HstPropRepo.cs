@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,16 +19,20 @@ public class HstPropRepo : IHstPropRepo
         _aircbnbContext = aircbnbContext;
     }
     //comment
-    public void Add(Property property)
+    public User? GetUserById(string id)
+    {
+        return _aircbnbContext.Set<User>().FirstOrDefault(u => u.Id == id);
+    }
+    public bool Add(Property property)
     {
         _aircbnbContext.Set<Property>()
-            
             .Add(property);
+        return true;
     }
 
-    public void Update(Property property)
+    public bool Update(Property property)
     {
-        
+        return true;
     }
 
     public int SaveChanges()
@@ -43,4 +48,6 @@ public class HstPropRepo : IHstPropRepo
                  .ThenInclude(x=>x.Amenity)
             .FirstOrDefault(x=>x.Id == id);
     }
+
+
 }

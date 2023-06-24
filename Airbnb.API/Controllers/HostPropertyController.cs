@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
+using System.Security.Claims;
 
 namespace Airbnb.API.Controllers
 {
@@ -28,9 +29,22 @@ namespace Airbnb.API.Controllers
         [HttpPost]
         public ActionResult PostAddProperty(PropertyPostAddDto propertyPostAddDto)
         {
-            _hostPropertyManager.postAddPropertyHost(propertyPostAddDto);
+            if (User?.Identity?.IsAuthenticated != true)
+            {
+                return BadRequest("No users login");
+            }
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            
+            bool isAdded = _hostPropertyManager.AddProperty(propertyPostAddDto, userId!);
+            if(isAdded)
+            {
+              return StatusCode(StatusCodes.Status201Created);
+            }
+            else
+            {
+                return BadRequest("Property is not added");
+            }
 
-            return NoContent();
         }
 
         [HttpGet]
