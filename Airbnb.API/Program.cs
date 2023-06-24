@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen();
 
 #region DataBase
 builder.Services.AddDbContext<AircbnbContext>(options =>
- options.UseSqlServer("Server=.; Database=AirBNB; Trusted_Connection=true; Encrypt=false;"));
+ options.UseSqlServer("Server=.; Database=AirBNB2023; Trusted_Connection=true; Encrypt=false;"));
 #endregion
 
 #region Identity
