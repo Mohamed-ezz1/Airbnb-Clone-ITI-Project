@@ -8,11 +8,11 @@ namespace Airbnb.BL;
 
 public interface IGuestSectionManager
 {
-    public GuestBookingsHistory? GetGuestBooking(Guid bookTd);
+    public GuestBookingsHistory? GetGuestBooking(Guid BookId);
 
 
 
-    public IEnumerable<GuestBookingsHistory>? GetGuestBookings(string userTD);
+    public IEnumerable<GuestBookingsHistory>? GetGuestBookings(string UserId);
     public bool Remove(Guid booking);
    
 }

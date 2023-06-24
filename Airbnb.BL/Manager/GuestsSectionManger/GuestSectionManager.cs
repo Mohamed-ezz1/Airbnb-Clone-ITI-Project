@@ -19,9 +19,9 @@ public class GuestSectionManager : IGuestSectionManager
     }
 
 
-    public GuestBookingsHistory? GetGuestBooking(Guid bookTd)
+    public GuestBookingsHistory? GetGuestBooking(Guid BookId)
     {
-        Booking Booking = _IGuestSectionRepo.GetGuestBooking(bookTd);
+        Booking Booking = _IGuestSectionRepo.GetGuestBooking(BookId);
 
         return new GuestBookingsHistory
         {
@@ -41,9 +41,9 @@ public class GuestSectionManager : IGuestSectionManager
 
 
 
-    public IEnumerable<GuestBookingsHistory>? GetGuestBookings(string UserTD)
+    public IEnumerable<GuestBookingsHistory>? GetGuestBookings(string UserId)
     {
-        IEnumerable<Booking>? Bookings = _IGuestSectionRepo.GetGuestBookings(UserTD);
+        IEnumerable<Booking>? Bookings = _IGuestSectionRepo.GetGuestBookings(UserId);
         if (Bookings is null)
         {
             return null;
@@ -66,10 +66,10 @@ public class GuestSectionManager : IGuestSectionManager
     }
 
 
-    public bool Remove(Guid BookingiD)
+    public bool Remove(Guid BookingId)
     {
 
-        _IGuestSectionRepo.RemoveFromDB(BookingiD);
+        _IGuestSectionRepo.RemoveFromDB(BookingId);
         int numberOfAffectedRows = _IGuestSectionRepo.SaveChanges();
         return numberOfAffectedRows > 0;
 

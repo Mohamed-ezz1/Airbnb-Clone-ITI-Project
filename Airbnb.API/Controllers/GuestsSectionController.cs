@@ -18,11 +18,11 @@ namespace Airbnb.API.Controllers
 
 
         [HttpGet]
-        [Route("{UserTD}")]
-        public ActionResult<IEnumerable<GuestBookingsHistory>> GetGuestBookings(string UserTD)
+        [Route("{UserID}")]
+        public ActionResult<IEnumerable<GuestBookingsHistory>> GetGuestBookings(string UserID)
         {
 
-            List<GuestBookingsHistory>? Bookings = _GuestSectionManager.GetGuestBookings(UserTD).ToList();
+            List<GuestBookingsHistory> Bookings = _GuestSectionManager.GetGuestBookings(UserID)!.ToList();
             if (Bookings is null)
             {
                 return NotFound();
