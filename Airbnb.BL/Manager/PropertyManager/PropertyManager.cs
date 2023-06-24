@@ -65,7 +65,8 @@ public class PropertyManager : IPropertyManager
             CheckInDate = bookingDto.StartDate,
             CheckOutDate = bookingDto.EndDate,
             NumberOfGuests = bookingDto.NumOfGuest,
-            TotalPrice = property.PricePerNight * (bookingDto.EndDate - bookingDto.StartDate).TotalDays,            
+            TotalPrice = property.PricePerNight * (bookingDto.EndDate - bookingDto.StartDate).TotalDays,
+            BookingDate = DateTime.Now
         };
 
         bool isAdded = _propertyRepo.Add(booking);
