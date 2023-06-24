@@ -51,17 +51,6 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
         return bookings;
     }
 
-
-    //public bool IsBookingDateRangeOverlap(Booking newBooking)
-    //{
-    //    IEnumerable<Booking> propertyBookings = GetBookingsByPropertyId((Guid)newBooking.PropertyId);
-
-    //    return propertyBookings.Any(existingBooking =>
-    //        (newBooking.CheckInDate < existingBooking.CheckOutDate && newBooking.CheckOutDate > existingBooking.CheckInDate) ||
-    //        (newBooking.CheckInDate < existingBooking.CheckInDate && newBooking.CheckOutDate > existingBooking.CheckInDate) ||
-    //        (newBooking.CheckInDate < existingBooking.CheckOutDate && newBooking.CheckOutDate > existingBooking.CheckOutDate) 
-    //    );
-    //}
     public bool IsBookingDateRangeOverlap(Booking newBooking)
     {
         IEnumerable<Booking> propertyBookings = GetBookingsByPropertyId((Guid)newBooking.PropertyId);
