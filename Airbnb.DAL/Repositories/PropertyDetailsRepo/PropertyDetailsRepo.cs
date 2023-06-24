@@ -22,6 +22,7 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
     public Property? FindPropertyById(Guid id)
     {
         return _Context.Set<Property>()
+            .Include(b => b.PropertyBookings)
             .Include(x => x.PropertyImages)
             .Include(u => u.User)
             .Include(c => c.City).ThenInclude(c => c.Country)
@@ -59,26 +60,14 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
 
         return propertyBookings.Any(existingBooking =>
             (newBookingCheckInDate < existingBooking.CheckOutDate && newBookingCheckOutDate > existingBooking.CheckInDate) ||
-            (newBookingCheckInDate < existingBooking.CheckInDate && newBookingCheckOutDate > existingBooking.CheckInDate) ||
-            (newBookingCheckInDate < existingBooking.CheckOutDate && newBookingCheckOutDate > existingBooking.CheckOutDate) ||
             (newBookingCheckInDate <= existingBooking.CheckInDate && newBookingCheckOutDate >= existingBooking.CheckOutDate) ||
             (newBookingCheckInDate >= existingBooking.CheckInDate && newBookingCheckOutDate <= existingBooking.CheckOutDate) ||
-            (newBookingCheckInDate <= existingBooking.CheckInDate && newBookingCheckOutDate >= existingBooking.CheckInDate) ||
-            (newBookingCheckInDate <= existingBooking.CheckOutDate && newBookingCheckOutDate >= existingBooking.CheckOutDate)
-        ) ||
-        propertyBookings.Any(existingBooking =>
-            (newBookingCheckInDate >= existingBooking.CheckInDate && newBookingCheckOutDate <= existingBooking.CheckOutDate) ||
-            (newBookingCheckInDate <= existingBooking.CheckInDate && newBookingCheckOutDate >= existingBooking.CheckOutDate) ||
-            (newBookingCheckInDate <= existingBooking.CheckInDate && newBookingCheckOutDate >= existingBooking.CheckInDate) ||
-            (newBookingCheckInDate >= existingBooking.CheckInDate && newBookingCheckOutDate <= existingBooking.CheckInDate) ||
-            (newBookingCheckInDate >= existingBooking.CheckOutDate && newBookingCheckOutDate <= existingBooking.CheckOutDate)
-        ) ||
-        propertyBookings.Any(existingBooking =>
-            (newBookingCheckInDate >= existingBooking.CheckInDate && newBookingCheckInDate < existingBooking.CheckOutDate) ||
-            (newBookingCheckOutDate > existingBooking.CheckInDate && newBookingCheckOutDate <= existingBooking.CheckOutDate)
-        ) &&
-        newBookingCheckOutDate > newBookingCheckInDate; // Check if check-out date is after check-in date
+            (newBookingCheckInDate > newBookingCheckOutDate));
+
+        //newBookingCheckInDate < newBookingCheckOutDate; // Check if check-in date is before check-out date
     }
+
+
 
 
     public int SaveChanges()

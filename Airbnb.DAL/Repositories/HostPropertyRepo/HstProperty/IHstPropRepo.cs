@@ -10,9 +10,11 @@ namespace Airbnb.DAL;
 
 public interface IHstPropRepo
 {
-    void Add(Property property);
+    bool Add(Property property);
     Property? GetPropertyById(Guid id);
-    void Update(Property property);
+    bool Update(Property property);
     //comment
     int SaveChanges();
+
+    User? GetUserById(string id);
 }

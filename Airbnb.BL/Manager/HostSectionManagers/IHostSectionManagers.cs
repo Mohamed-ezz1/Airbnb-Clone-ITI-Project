@@ -9,8 +9,8 @@ namespace Airbnb.BL
 {
     public interface  IHostSectionManagers
     {
-        IEnumerable<HostBookingsDto> GetHostBooking(string id);
+        IEnumerable<HostBookingsDto> GetHostBooking(string UserId);
 
-        IEnumerable<HostPropertiesDto>  GetHostProperties(string id);
+        IEnumerable<HostPropertiesDto>  GetHostProperties(string UserId);
     }
 }

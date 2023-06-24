@@ -10,6 +10,6 @@ public interface IHostPropertyManager
 {
     PropertyGetAddDto? GetAddPropertyLists();
     PropertyGetUpdateDto? GetUpdatePropertyContent(Guid id);
-    void postAddPropertyHost(PropertyPostAddDto propertyPostAddDto);
+    bool AddProperty(PropertyPostAddDto propertyPostAddDto, string userId);
     bool UpdateHostProperty(PropertyPostUpdateDto propertyPostUpdateDto);
 }

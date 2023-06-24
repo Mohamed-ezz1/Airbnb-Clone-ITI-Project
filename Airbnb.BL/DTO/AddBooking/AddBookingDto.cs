@@ -13,13 +13,6 @@ public class AddBookingDto
     public Guid PropertyId { get; set; }
     public DateTime StartDate { get; set; } = DateTime.Now;
     public DateTime EndDate { get; set; } = DateTime.Now;
-    [Range(1, 16)]
     public int NumOfGuest { get; set; }
-    public int NumOfNight { get; set; }
-}
 
-public class BookingDto
-{
-    public DateTime CheckInDate { get; set; }
-    public DateTime CheckOutDate { get; set; }
 }

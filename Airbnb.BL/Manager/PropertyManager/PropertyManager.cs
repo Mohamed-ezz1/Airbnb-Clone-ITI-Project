@@ -25,7 +25,7 @@ public class PropertyManager : IPropertyManager
         return new GetPropertyDetailsDto
         {
             NameOfProperty = property.Name,
-            MaxNumOfGust = property.MaximumNumberOfGuests,
+            MaxNumOfGuest = property.MaximumNumberOfGuests,
             BedRoomCount = property.BedCount,
             PricePerNight = property.PricePerNight,
             PropertyDescription = property.Description,
@@ -33,18 +33,51 @@ public class PropertyManager : IPropertyManager
             CountryNmae = property.City?.Country?.CountryName ?? string.Empty,
             UserName = $"{property.User?.FirstName ?? string.Empty} {property.User?.LasttName ?? string.Empty}",
             RatingOverroll = property.Reviews.Any()? property.Reviews.Select(x => x.Rate).Average().ToString(): string.Empty,
-            NumOfReview = property.Reviews.Any()? property.Reviews.Count() : 0,
+            NumOfReview = property.Reviews.Any() ? property.Reviews.Count() : 0,
             Aminties = property.PropertyAmenities.Select(a => new AmintsDTO
             {
                 AmintiesName = a.Amenity?.Name ?? string.Empty,
                 Icon = a.Amenity?.Icon ?? string.Empty
-            }).ToList(),
-            Imgs = property.PropertyImages.Select(x => x.Image).ToList(),
-            UserImage = "image not working yet"
-
+            }),
+            Imgs = property.PropertyImages.Select(x => x.Image),
+            UserImage = "image not working yet",
+            BookingDates = property.PropertyBookings.Select(x => new PropertyBookingDates { CheckInDate = x.CheckInDate, CheckOutDate = x.CheckOutDate }),
+            
         };
 
     }
+
+
+
+    public bool AddBooking(AddBookingDto bookingDto, string userId)
+    {
+
+        Property? property = _propertyRepo.FindPropertyById(bookingDto.PropertyId);
+        if (property == null || property.UserId == userId || property.MaximumNumberOfGuests < bookingDto.NumOfGuest)
+        {
+            return false;
+        }
+        Booking booking = new Booking
+        {
+            Id = Guid.NewGuid(),
+            UserId = userId,
+            PropertyId = bookingDto.PropertyId,
+            CheckInDate = bookingDto.StartDate,
+            CheckOutDate = bookingDto.EndDate,
+            NumberOfGuests = bookingDto.NumOfGuest,
+            TotalPrice = property.PricePerNight * (bookingDto.EndDate - bookingDto.StartDate).TotalDays,            
+        };
+
+        bool isAdded = _propertyRepo.Add(booking);
+        if (isAdded)
+        {
+            _propertyRepo.SaveChanges();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     //public IEnumerable<BookingDto> GetBookingsByPropertyId(Guid propertyId)
     //{
@@ -58,38 +91,6 @@ public class PropertyManager : IPropertyManager
 
     //    return bookingDtos;
     //}
-
-
-    public bool AddBooking(AddBookingDto bookingDto, string userId)
-    {
-
-        Property? property = _propertyRepo.FindPropertyById(bookingDto.PropertyId);
-        if (property == null || property.UserId == userId)
-        {
-            return false;
-        }
-        Booking booking = new Booking
-        {
-            Id = Guid.NewGuid(),
-            UserId = userId,
-            PropertyId = bookingDto.PropertyId,
-            CheckInDate = bookingDto.StartDate,
-            CheckOutDate = bookingDto.EndDate,
-            NumberOfGuests = bookingDto.NumOfGuest,
-            TotalPrice = property.PricePerNight * (bookingDto.EndDate - bookingDto.StartDate).TotalDays,
-            
-        };
-
-        bool isAdded = _propertyRepo.Add(booking);
-        if (isAdded)
-        {
-            _propertyRepo.SaveChanges();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
 

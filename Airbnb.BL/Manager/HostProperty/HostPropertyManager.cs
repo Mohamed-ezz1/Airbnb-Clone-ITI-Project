@@ -65,12 +65,13 @@ public class HostPropertyManager : IHostPropertyManager
         return AddPropertyLists;
     }
 
-    public void postAddPropertyHost(PropertyPostAddDto propertyPostAddDto)
+    public bool AddProperty(PropertyPostAddDto propertyPostAddDto, string userId)
     {
+        var userFromDB = _propertyRepo.GetUserById(userId);
         Property property = new Property
         {
             Id = Guid.NewGuid(),
-           
+            UserId = userId,
             Name = propertyPostAddDto.PropertyName,
             MaximumNumberOfGuests = propertyPostAddDto.MaxNumberOfGuests,
             RoomCount = propertyPostAddDto.BedroomsCount,
@@ -94,8 +95,21 @@ public class HostPropertyManager : IHostPropertyManager
             }).ToList()
 
         };
-        _propertyRepo.Add(property);
-        _propertyRepo.SaveChanges();
+            
+        bool isAdded = _propertyRepo.Add(property);
+        if (isAdded)
+        {
+            if (userFromDB.UserType == UserType.Guest)
+            {
+                property.User.UserType = UserType.Host;
+                _propertyRepo.SaveChanges();
+            }
+            else
+            {
+                _propertyRepo.SaveChanges();
+            }
+        }
+        return isAdded;
     }
 
     public PropertyGetUpdateDto? GetUpdatePropertyContent(Guid id)
