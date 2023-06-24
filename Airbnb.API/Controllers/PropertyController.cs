@@ -21,10 +21,10 @@ namespace Airbnb.API.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public ActionResult<GetPropertyDetailsDto> GetPropertyById(Guid id)
+        [Route("{PropertyId}")]
+        public ActionResult<GetPropertyDetailsDto> GetPropertyById(Guid PropertyId)
         {
-            GetPropertyDetailsDto? Property = _propertyManager.FindPropertyById(id);
+            GetPropertyDetailsDto? Property = _propertyManager.FindPropertyById(PropertyId);
             if (Property == null)
             {
                 return NotFound();

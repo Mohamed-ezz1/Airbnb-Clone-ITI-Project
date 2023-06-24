@@ -84,6 +84,7 @@ public class HostPropertyManager : IHostPropertyManager
             PropertyImages = propertyPostAddDto.ImagesURLs.Select(x => new PropertyImage
             {
                 Image = x,
+                CreatedDate = DateTime.Now,
                 
 
             }).ToList(),
