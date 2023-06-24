@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
 
 namespace Airbnb.DAL.Migrations
 {
@@ -278,17 +277,23 @@ namespace Airbnb.DAL.Migrations
                         name: "FK_Properties_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id");
+                        principalColumn: "Id"
+                        , onDelete: ReferentialAction.Cascade
+                        )
+
+                    ;
                     table.ForeignKey(
                         name: "FK_Properties_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
-                        principalColumn: "Id");
+                        principalColumn: "Id"
+                         , onDelete: ReferentialAction.Cascade
+                        );
                     table.ForeignKey(
                         name: "FK_Properties_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id", onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -311,12 +316,12 @@ namespace Airbnb.DAL.Migrations
                         name: "FK_Bookings_Properties_PropertyId",
                         column: x => x.PropertyId,
                         principalTable: "Properties",
-                        principalColumn: "Id");
+                        principalColumn: "Id", onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Bookings_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id", onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -413,7 +418,7 @@ namespace Airbnb.DAL.Migrations
                         column: x => x.BookingId,
                         principalTable: "Bookings",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Reviews_Properties_PropertyId",
                         column: x => x.PropertyId,
