@@ -80,19 +80,7 @@ public class PropertyManager : IPropertyManager
             return false;
         }
 
-    //public IEnumerable<BookingDto> GetBookingsByPropertyId(Guid propertyId)
-    //{
-    //    IEnumerable<Booking> bookings = _propertyRepo.GetBookingsByPropertyId(propertyId);
-    //    // Map bookings to BookingDto objects
-    //    IEnumerable<BookingDto> bookingDtos = bookings.Select(booking => new BookingDto
-    //    {
-    //        CheckInDate = booking.CheckInDate,
-    //        CheckOutDate = booking.CheckOutDate
-    //    });
 
-    //    return bookingDtos;
-    //}
     }
-
 
 }
