@@ -26,7 +26,7 @@ namespace Airbnb.BL
                  CheckInDate = x.CheckInDate,
                  CheckOutDate = x.CheckOutDate,
                  TotalPrice = x.TotalPrice,
-
+                  
             });
 
             return hostBookingsDtos;
