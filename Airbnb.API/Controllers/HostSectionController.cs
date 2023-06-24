@@ -18,11 +18,11 @@ namespace Airbnb.API.Controllers
         // get host
 
         [HttpGet]
-        [Route("/HostBooking/{id}")]
-        public ActionResult<IEnumerable<HostBookingsDto>> GetHostBooking( string id )
+        [Route("/HostBooking/{UserId}")]
+        public ActionResult<IEnumerable<HostBookingsDto>> GetHostBooking( string UserId )
         {
 
-            IEnumerable<HostBookingsDto> HostBookings = _hostSectionManagers.GetHostBooking( id );
+            IEnumerable<HostBookingsDto> HostBookings = _hostSectionManagers.GetHostBooking(UserId);
 
             if (HostBookings == null )
             {
@@ -35,11 +35,11 @@ namespace Airbnb.API.Controllers
 
 
         [HttpGet]
-        [Route("/HostProperty/{id}")]
-        public ActionResult<List<HostPropertiesDto>> GetHostProperties(string id)
+        [Route("/HostProperty/{UserId}")]
+        public ActionResult<List<HostPropertiesDto>> GetHostProperties(string UserId)
         {
 
-            IEnumerable<HostPropertiesDto>  hostProperties = _hostSectionManagers.GetHostProperties(id);
+            IEnumerable<HostPropertiesDto>  hostProperties = _hostSectionManagers.GetHostProperties(UserId);
 
             if (hostProperties == null)
             {

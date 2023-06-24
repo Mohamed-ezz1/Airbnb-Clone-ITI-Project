@@ -16,9 +16,9 @@ namespace Airbnb.BL
         {
             _userHostRepo = userHostRepo;
         }
-        public IEnumerable<HostBookingsDto> GetHostBooking(string id)
+        public IEnumerable<HostBookingsDto> GetHostBooking(string UserId)
         {
-            IEnumerable<Booking> host = _userHostRepo.GetHostBookingBD(id);
+            IEnumerable<Booking> host = _userHostRepo.GetHostBookingBD(UserId);
             IEnumerable<HostBookingsDto> hostBookingsDtos = host.Select(x => new HostBookingsDto
             {
                  GuestName = x.User.FirstName +""+x.User.LasttName,
@@ -32,10 +32,14 @@ namespace Airbnb.BL
             return hostBookingsDtos;
         }
 
-        public IEnumerable<HostPropertiesDto> GetHostProperties(string id)
+        public IEnumerable<HostPropertiesDto> GetHostProperties(string UserId)
         {
-            IEnumerable<Property> hostPropery = _userHostRepo.GetHostPropertiesDB(id);
-            
+            IEnumerable<Property> hostPropery = _userHostRepo.GetHostPropertiesDB(UserId);
+            if(hostPropery == null)
+            {
+                return null!;
+            }
+          
             IEnumerable<HostPropertiesDto> hostBookingsDtos = hostPropery.Select(p => new HostPropertiesDto
             {
 
