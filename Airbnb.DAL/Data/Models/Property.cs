@@ -38,7 +38,13 @@ public class Property
     public Category? Category { get; set; } 
     public int? CityId { get; set; }
     public City? City { get; set; }
-     public int NumberOfReview { get; set; }
-    [Range(0.0,5.0)]
-    public double OverALLReview { get; set; }
+     public int NumberOfReview
+     {
+        get { return Reviews?.Count() ?? 0; }
+     }
+    [Range(0,5)]
+    public double OverALLReview
+    {
+        get { return Reviews?.Average(review => review.Rate) ?? 0.0; }
+    }
 }

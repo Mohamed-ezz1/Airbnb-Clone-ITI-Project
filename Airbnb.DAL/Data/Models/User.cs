@@ -21,6 +21,7 @@ public class User: IdentityUser
     public UserType UserType { get; set; }
 
     public string About { get; set; } = string.Empty;
+    public string UserImage { get; set; } = string.Empty;
 
     public IEnumerable<PropertyImage> UserPropertyImages { get; set; } = new List<PropertyImage>();
     public IEnumerable<Booking> UserBookings { get; set; } = new List<Booking>();

@@ -32,15 +32,15 @@ public class PropertyManager : IPropertyManager
             CityNmae = property.City?.CityName ?? string.Empty,
             CountryNmae = property.City?.Country?.CountryName ?? string.Empty,
             UserName = $"{property.User?.FirstName ?? string.Empty} {property.User?.LasttName ?? string.Empty}",
-            RatingOverroll = property.Reviews.Any()? property.Reviews.Select(x => x.Rate).Average().ToString(): string.Empty,
-            NumOfReview = property.Reviews.Any() ? property.Reviews.Count() : 0,
+            RatingOverroll = property.OverALLReview,
+            NumOfReview = property.NumberOfReview,
             Aminties = property.PropertyAmenities.Select(a => new AmintsDTO
             {
                 AmintiesName = a.Amenity?.Name ?? string.Empty,
                 Icon = a.Amenity?.Icon ?? string.Empty
             }),
             Imgs = property.PropertyImages.Select(x => x.Image),
-            UserImage = "image not working yet",
+            UserImage = property.User?.UserImage ?? string.Empty,
             BookingDates = property.PropertyBookings.Select(x => new PropertyBookingDates { CheckInDate = x.CheckInDate, CheckOutDate = x.CheckOutDate }),
             
         };
