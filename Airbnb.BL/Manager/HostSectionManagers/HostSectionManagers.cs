@@ -27,7 +27,6 @@ namespace Airbnb.BL
                  CheckOutDate = x.CheckOutDate,
                  TotalPrice = x.TotalPrice, 
 
-                 TotalPrice = x.TotalPrice,
                   
             });
 
