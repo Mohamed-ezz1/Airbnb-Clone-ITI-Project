@@ -478,9 +478,9 @@ namespace Airbnb.DAL.Migrations
                 column: "PropertyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bookings_UserId_PropertyId_CheckInDate",
+                name: "IX_Bookings_PropertyId_CheckInDate",
                 table: "Bookings",
-                columns: new[] { "UserId", "PropertyId", "CheckInDate" },
+                columns: new[] { "PropertyId", "CheckInDate" },
                 unique: true,
                 filter: "[UserId] IS NOT NULL AND [PropertyId] IS NOT NULL");
 
