@@ -51,7 +51,7 @@ namespace Airbnb.BL
               CityName = p.City.CityName,
               CountryName = p.City.Country.CountryName,
               Adress = p.Address , 
-                OverAllRrating = p.OverALLReview
+              OverAllRrating = p.OverALLReview
 
             });
 
