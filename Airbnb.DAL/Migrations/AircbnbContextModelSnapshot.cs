@@ -22,7 +22,7 @@ namespace Airbnb.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Airbnb.DAl.Amenity", b =>
+            modelBuilder.Entity("Airbnb.DAL.Amenity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,23 +42,9 @@ namespace Airbnb.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Amenities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Icon = "https://example.com/icon1.png",
-                            Name = "Amenity 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Icon = "https://example.com/icon2.png",
-                            Name = "Amenity 2"
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Booking", b =>
+            modelBuilder.Entity("Airbnb.DAL.Booking", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,39 +80,19 @@ namespace Airbnb.DAL.Migrations
                         .HasFilter("[UserId] IS NOT NULL AND [PropertyId] IS NOT NULL");
 
                     b.ToTable("Bookings");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("89c4e252-78ce-4f12-9e15-46126d20c378"),
-                            BookingDate = new DateTime(2023, 6, 23, 7, 3, 35, 914, DateTimeKind.Utc).AddTicks(2341),
-                            CheckInDate = new DateTime(2023, 6, 24, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CheckOutDate = new DateTime(2023, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            NumberOfGuests = 4,
-                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
-                            TotalPrice = 500.0,
-                            UserId = "ebfec8b1-bc53-46f4-9dac-80138daffd23"
-                        },
-                        new
-                        {
-                            Id = new Guid("db9ce2ab-b174-43a9-bc7a-5f33b1fd8a89"),
-                            BookingDate = new DateTime(2023, 6, 23, 7, 3, 35, 914, DateTimeKind.Utc).AddTicks(2347),
-                            CheckInDate = new DateTime(2023, 6, 25, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CheckOutDate = new DateTime(2023, 6, 28, 0, 0, 0, 0, DateTimeKind.Utc),
-                            NumberOfGuests = 2,
-                            PropertyId = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
-                            TotalPrice = 300.0,
-                            UserId = "a7acc0ae-d3f7-4537-85bb-f59c832f8391"
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Category", b =>
+            modelBuilder.Entity("Airbnb.DAL.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -135,21 +101,9 @@ namespace Airbnb.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Category 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Category 2"
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.City", b =>
+            modelBuilder.Entity("Airbnb.DAL.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,23 +123,9 @@ namespace Airbnb.DAL.Migrations
                     b.HasIndex("CounrtyId");
 
                     b.ToTable("Cities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CityName = "City 1",
-                            CounrtyId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CityName = "City 2",
-                            CounrtyId = 1
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Country", b =>
+            modelBuilder.Entity("Airbnb.DAL.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -200,21 +140,9 @@ namespace Airbnb.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CountryName = "Country 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CountryName = "Country 2"
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Property", b =>
+            modelBuilder.Entity("Airbnb.DAL.Property", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -258,12 +186,6 @@ namespace Airbnb.DAL.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<int>("NumberOfReview")
-                        .HasColumnType("int");
-
-                    b.Property<double>("OverALLReview")
-                        .HasColumnType("float");
-
                     b.Property<double>("PricePerNight")
                         .HasColumnType("float");
 
@@ -282,51 +204,9 @@ namespace Airbnb.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Properties");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
-                            Address = "Address 1",
-                            AvailabilityType = true,
-                            BathroomCount = 2,
-                            BedCount = 4,
-                            CategoryId = 1,
-                            CityId = 1,
-                            Description = "Description 1",
-                            Latitude = 78.90m,
-                            Longitude = 123.456m,
-                            MaximumNumberOfGuests = 6,
-                            Name = "Property 1",
-                            NumberOfReview = 0,
-                            OverALLReview = 0.0,
-                            PricePerNight = 100.0,
-                            RoomCount = 3,
-                            UserId = "a7acc0ae-d3f7-4537-85bb-f59c832f8391"
-                        },
-                        new
-                        {
-                            Id = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
-                            Address = "Address 2",
-                            AvailabilityType = true,
-                            BathroomCount = 1,
-                            BedCount = 2,
-                            CategoryId = 2,
-                            CityId = 2,
-                            Description = "Description 2",
-                            Latitude = 12.34m,
-                            Longitude = 45.678m,
-                            MaximumNumberOfGuests = 4,
-                            Name = "Property 2",
-                            NumberOfReview = 0,
-                            OverALLReview = 0.0,
-                            PricePerNight = 80.0,
-                            RoomCount = 2,
-                            UserId = "ebfec8b1-bc53-46f4-9dac-80138daffd23"
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.PropertyAmenity", b =>
+            modelBuilder.Entity("Airbnb.DAL.PropertyAmenity", b =>
                 {
                     b.Property<Guid>("PropertyId")
                         .HasColumnType("uniqueidentifier");
@@ -339,21 +219,9 @@ namespace Airbnb.DAL.Migrations
                     b.HasIndex("AmenityId");
 
                     b.ToTable("PropertyAmenities");
-
-                    b.HasData(
-                        new
-                        {
-                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
-                            AmenityId = 1
-                        },
-                        new
-                        {
-                            PropertyId = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
-                            AmenityId = 2
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.PropertyImage", b =>
+            modelBuilder.Entity("Airbnb.DAL.PropertyImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -381,27 +249,9 @@ namespace Airbnb.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("PropertyImages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2023, 6, 23, 10, 3, 35, 914, DateTimeKind.Local).AddTicks(2369),
-                            Image = "image1.jpg",
-                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
-                            UserId = "a7acc0ae-d3f7-4537-85bb-f59c832f8391"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2023, 6, 23, 10, 3, 35, 914, DateTimeKind.Local).AddTicks(2419),
-                            Image = "image2.jpg",
-                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
-                            UserId = "ebfec8b1-bc53-46f4-9dac-80138daffd23"
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.PropertyRule", b =>
+            modelBuilder.Entity("Airbnb.DAL.PropertyRule", b =>
                 {
                     b.Property<Guid>("PropertyId")
                         .HasColumnType("uniqueidentifier");
@@ -414,21 +264,9 @@ namespace Airbnb.DAL.Migrations
                     b.HasIndex("RuleId");
 
                     b.ToTable("PropertyRules");
-
-                    b.HasData(
-                        new
-                        {
-                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
-                            RuleId = 1
-                        },
-                        new
-                        {
-                            PropertyId = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
-                            RuleId = 2
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Review", b =>
+            modelBuilder.Entity("Airbnb.DAL.Review", b =>
                 {
                     b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier");
@@ -457,29 +295,9 @@ namespace Airbnb.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
-
-                    b.HasData(
-                        new
-                        {
-                            BookingId = new Guid("89c4e252-78ce-4f12-9e15-46126d20c378"),
-                            PropertyId = new Guid("45d9a426-426b-4606-8720-6b5813eefefa"),
-                            UserId = "a7acc0ae-d3f7-4537-85bb-f59c832f8391",
-                            Comment = "This property was great!",
-                            CreatedDate = new DateTime(2023, 6, 23, 7, 3, 35, 914, DateTimeKind.Utc).AddTicks(2351),
-                            Rate = 4
-                        },
-                        new
-                        {
-                            BookingId = new Guid("db9ce2ab-b174-43a9-bc7a-5f33b1fd8a89"),
-                            PropertyId = new Guid("a7a41343-c82e-4a47-8bc1-b392c3b7cc72"),
-                            UserId = "ebfec8b1-bc53-46f4-9dac-80138daffd23",
-                            Comment = "Highly recommended!",
-                            CreatedDate = new DateTime(2023, 6, 23, 7, 3, 35, 914, DateTimeKind.Utc).AddTicks(2354),
-                            Rate = 5
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Rule", b =>
+            modelBuilder.Entity("Airbnb.DAL.Rule", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -495,18 +313,6 @@ namespace Airbnb.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rules");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            RuleName = "Rule 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            RuleName = "Rule 2"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -709,7 +515,7 @@ namespace Airbnb.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.User", b =>
+            modelBuilder.Entity("Airbnb.DAL.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -727,51 +533,23 @@ namespace Airbnb.DAL.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("UserImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UserType")
                         .HasColumnType("int");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "a7acc0ae-d3f7-4537-85bb-f59c832f8391",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "2c9ef59e-b701-4f9b-af54-bae8c5b07c6f",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "8312781c-5c4e-4429-a2e6-0834ab15d278",
-                            TwoFactorEnabled = false,
-                            About = "I am a regular user.",
-                            FirstName = "John",
-                            LasttName = "Doe",
-                            UserType = 1
-                        },
-                        new
-                        {
-                            Id = "ebfec8b1-bc53-46f4-9dac-80138daffd23",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "31596520-a9d1-4415-96b6-03a9ac3c7f52",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "dc1ca6b2-651e-4ed9-9015-8cfa47e4c999",
-                            TwoFactorEnabled = false,
-                            About = "I am an admin user.",
-                            FirstName = "Jane",
-                            LasttName = "Smith",
-                            UserType = 0
-                        });
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Booking", b =>
+            modelBuilder.Entity("Airbnb.DAL.Booking", b =>
                 {
-                    b.HasOne("Airbnb.DAl.Property", "Property")
+                    b.HasOne("Airbnb.DAL.Property", "Property")
                         .WithMany("PropertyBookings")
                         .HasForeignKey("PropertyId");
 
-                    b.HasOne("Airbnb.DAl.User", "User")
+                    b.HasOne("Airbnb.DAL.User", "User")
                         .WithMany("UserBookings")
                         .HasForeignKey("UserId");
 
@@ -780,26 +558,26 @@ namespace Airbnb.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.City", b =>
+            modelBuilder.Entity("Airbnb.DAL.City", b =>
                 {
-                    b.HasOne("Airbnb.DAl.Country", "Country")
+                    b.HasOne("Airbnb.DAL.Country", "Country")
                         .WithMany("Cities")
                         .HasForeignKey("CounrtyId");
 
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Property", b =>
+            modelBuilder.Entity("Airbnb.DAL.Property", b =>
                 {
-                    b.HasOne("Airbnb.DAl.Category", "Category")
+                    b.HasOne("Airbnb.DAL.Category", "Category")
                         .WithMany("CategoryProperties")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("Airbnb.DAl.City", "City")
+                    b.HasOne("Airbnb.DAL.City", "City")
                         .WithMany("CityProperties")
                         .HasForeignKey("CityId");
 
-                    b.HasOne("Airbnb.DAl.User", "User")
+                    b.HasOne("Airbnb.DAL.User", "User")
                         .WithMany("UserProperties")
                         .HasForeignKey("UserId");
 
@@ -810,15 +588,15 @@ namespace Airbnb.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.PropertyAmenity", b =>
+            modelBuilder.Entity("Airbnb.DAL.PropertyAmenity", b =>
                 {
-                    b.HasOne("Airbnb.DAl.Amenity", "Amenity")
+                    b.HasOne("Airbnb.DAL.Amenity", "Amenity")
                         .WithMany("AmenitiesProperty")
                         .HasForeignKey("AmenityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Airbnb.DAl.Property", "Property")
+                    b.HasOne("Airbnb.DAL.Property", "Property")
                         .WithMany("PropertyAmenities")
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -829,15 +607,15 @@ namespace Airbnb.DAL.Migrations
                     b.Navigation("Property");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.PropertyImage", b =>
+            modelBuilder.Entity("Airbnb.DAL.PropertyImage", b =>
                 {
-                    b.HasOne("Airbnb.DAl.Property", "Property")
+                    b.HasOne("Airbnb.DAL.Property", "Property")
                         .WithMany("PropertyImages")
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Airbnb.DAl.User", "User")
+                    b.HasOne("Airbnb.DAL.User", "User")
                         .WithMany("UserPropertyImages")
                         .HasForeignKey("UserId");
 
@@ -846,15 +624,15 @@ namespace Airbnb.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.PropertyRule", b =>
+            modelBuilder.Entity("Airbnb.DAL.PropertyRule", b =>
                 {
-                    b.HasOne("Airbnb.DAl.Property", "Property")
+                    b.HasOne("Airbnb.DAL.Property", "Property")
                         .WithMany("PropertyRules")
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Airbnb.DAl.Rule", "Rule")
+                    b.HasOne("Airbnb.DAL.Rule", "Rule")
                         .WithMany("RuleProperty")
                         .HasForeignKey("RuleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -865,21 +643,21 @@ namespace Airbnb.DAL.Migrations
                     b.Navigation("Rule");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Review", b =>
+            modelBuilder.Entity("Airbnb.DAL.Review", b =>
                 {
-                    b.HasOne("Airbnb.DAl.Booking", "Booking")
+                    b.HasOne("Airbnb.DAL.Booking", "Booking")
                         .WithMany("Reviews")
                         .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Airbnb.DAl.Property", "Property")
+                    b.HasOne("Airbnb.DAL.Property", "Property")
                         .WithMany("Reviews")
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Airbnb.DAl.User", "User")
+                    b.HasOne("Airbnb.DAL.User", "User")
                         .WithMany("Reviews")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -943,41 +721,41 @@ namespace Airbnb.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.User", b =>
+            modelBuilder.Entity("Airbnb.DAL.User", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithOne()
-                        .HasForeignKey("Airbnb.DAl.User", "Id")
+                        .HasForeignKey("Airbnb.DAL.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Amenity", b =>
+            modelBuilder.Entity("Airbnb.DAL.Amenity", b =>
                 {
                     b.Navigation("AmenitiesProperty");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Booking", b =>
+            modelBuilder.Entity("Airbnb.DAL.Booking", b =>
                 {
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Category", b =>
+            modelBuilder.Entity("Airbnb.DAL.Category", b =>
                 {
                     b.Navigation("CategoryProperties");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.City", b =>
+            modelBuilder.Entity("Airbnb.DAL.City", b =>
                 {
                     b.Navigation("CityProperties");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Country", b =>
+            modelBuilder.Entity("Airbnb.DAL.Country", b =>
                 {
                     b.Navigation("Cities");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Property", b =>
+            modelBuilder.Entity("Airbnb.DAL.Property", b =>
                 {
                     b.Navigation("PropertyAmenities");
 
@@ -990,12 +768,12 @@ namespace Airbnb.DAL.Migrations
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.Rule", b =>
+            modelBuilder.Entity("Airbnb.DAL.Rule", b =>
                 {
                     b.Navigation("RuleProperty");
                 });
 
-            modelBuilder.Entity("Airbnb.DAl.User", b =>
+            modelBuilder.Entity("Airbnb.DAL.User", b =>
                 {
                     b.Navigation("Reviews");
 
