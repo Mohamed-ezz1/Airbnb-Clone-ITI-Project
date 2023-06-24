@@ -64,7 +64,7 @@ public class PropertyManager : IPropertyManager
     {
 
         Property? property = _propertyRepo.FindPropertyById(bookingDto.PropertyId);
-        if (property == null)
+        if (property == null || property.UserId == userId)
         {
             return false;
         }
