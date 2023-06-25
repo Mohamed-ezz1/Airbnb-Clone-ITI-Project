@@ -1,4 +1,5 @@
-﻿using Airbnb.BL;
+﻿using System.Security.Claims;
+using Airbnb.BL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,16 +19,17 @@ namespace Airbnb.API.Controllers
         // get host
 
         [HttpGet]
-        [Route("/HostBooking/{UserId}")]
-        public ActionResult<IEnumerable<HostBookingsDto>> GetHostBooking( string UserId )
+        [Route("/HostBooking")]
+        public ActionResult<IEnumerable<HostBookingsDto>> GetHostBooking()
         {
-
-            IEnumerable<HostBookingsDto> HostBookings = _hostSectionManagers.GetHostBooking(UserId);
 
             if (User?.Identity?.IsAuthenticated != true)
             {
                 return BadRequest("No users login");
             }
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            IEnumerable<HostBookingsDto> HostBookings = _hostSectionManagers.GetHostBooking(userId!);
 
             if (HostBookings == null )
             {
@@ -40,15 +42,17 @@ namespace Airbnb.API.Controllers
 
 
         [HttpGet]
-        [Route("/HostProperty/{UserId}")]
-        public ActionResult<List<HostPropertiesDto>> GetHostProperties(string UserId)
+        [Route("/HostProperty")]
+        public ActionResult<List<HostPropertiesDto>> GetHostProperties()
         {
             if (User?.Identity?.IsAuthenticated != true)
             {
                 return BadRequest("No users login");
             }
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            IEnumerable<HostPropertiesDto>  hostProperties = _hostSectionManagers.GetHostProperties(UserId);
+
+            IEnumerable<HostPropertiesDto>  hostProperties = _hostSectionManagers.GetHostProperties(userId!);
 
             if (hostProperties == null)
             {
