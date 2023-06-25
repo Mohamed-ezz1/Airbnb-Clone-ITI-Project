@@ -29,7 +29,7 @@ public class HomeManager : IHomeManager
                 PricePerNight = p.PricePerNight,
                 CityName = p.City.CityName,
                 CountryName = p.City.Country.CountryName,
-                PropertyAllRating = p.OverALLReview
+                //PropertyAllRating = p.OverALLReview
 
             }); ;
         return propsDto;
