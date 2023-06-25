@@ -24,6 +24,11 @@ namespace Airbnb.API.Controllers
 
             IEnumerable<HostBookingsDto> HostBookings = _hostSectionManagers.GetHostBooking(UserId);
 
+            if (User?.Identity?.IsAuthenticated != true)
+            {
+                return BadRequest("No users login");
+            }
+
             if (HostBookings == null )
             {
                 return NotFound();
