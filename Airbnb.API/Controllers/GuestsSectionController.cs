@@ -1,4 +1,5 @@
-﻿using Airbnb.BL;
+﻿using System.Security.Claims;
+using Airbnb.BL;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,12 +20,13 @@ namespace Airbnb.API.Controllers
 
 
         [HttpGet]
-        [Route("{UserID}")]
+        [Route("GuestBooking")]
         [Authorize]
-        public ActionResult<IEnumerable<GuestBookingsHistory>> GetGuestBookings(string UserID)
+        public ActionResult<IEnumerable<GuestBookingsHistory>> GetGuestBookings()
         {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            List<GuestBookingsHistory> Bookings = _GuestSectionManager.GetGuestBookings(UserID)!.ToList();
+            List<GuestBookingsHistory> Bookings = _GuestSectionManager.GetGuestBookings(userId!)!.ToList();
             if (Bookings is null)
             {
                 return NotFound();
