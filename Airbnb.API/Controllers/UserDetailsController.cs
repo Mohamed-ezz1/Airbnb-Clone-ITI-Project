@@ -1,4 +1,5 @@
 ﻿using Airbnb.BL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,6 +36,7 @@ namespace Airbnb.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<GuestProfileReedDTO> GuestProfileRead(string UserId)
         {
             GuestProfileReedDTO GuestProfile = userMangers.GuestProfileRead(UserId);
@@ -46,8 +48,8 @@ namespace Airbnb.API.Controllers
 
 
         [HttpPut]
-
-        public ActionResult<GuestProfileReedDTO> GuestProfileUpdate(GuestProfileUpdateDto GuestInfo)
+        [Authorize]
+        public ActionResult<GuestProfileUpdateDto> GuestProfileUpdate(GuestProfileUpdateDto GuestInfo)
         {
             bool isSuccessful = userMangers.UpdateGuestInfo(GuestInfo);
             if (!isSuccessful)

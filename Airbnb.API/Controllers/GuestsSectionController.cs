@@ -1,4 +1,5 @@
 ﻿using Airbnb.BL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,7 @@ namespace Airbnb.API.Controllers
 
         [HttpGet]
         [Route("{UserID}")]
+        [Authorize]
         public ActionResult<IEnumerable<GuestBookingsHistory>> GetGuestBookings(string UserID)
         {
 
@@ -35,6 +37,7 @@ namespace Airbnb.API.Controllers
 
         [HttpDelete]
         [Route("{BookId}")]
+        [Authorize]
         public ActionResult<GuestBookingsHistory> DeleteGuestBooking(Guid BookId)
         {
 
