@@ -21,7 +21,7 @@ namespace Airbnb.DAL
             return _aircbnbContext.Bookings
                 .Include(p => p.Property)
                 .Include(p => p.User)
-                .Where(p => p.UserId == id);
+                .Where(p => p.Property.UserId == id);
 
         }
 
