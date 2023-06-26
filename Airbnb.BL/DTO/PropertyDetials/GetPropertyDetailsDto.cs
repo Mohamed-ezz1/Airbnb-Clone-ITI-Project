@@ -18,6 +18,7 @@ public class GetPropertyDetailsDto
     public string UserName { get; set; } = string.Empty;
     public string UserImage { get; set; } = string.Empty;
     public int BedRoomCount { get; set; }
+    public int BathRoomCount { get; set; }
     public double PricePerNight { get; set; }
     public string PropertyDescription { get; set; } = string.Empty;
     public IEnumerable<AmintsDTO> Aminties { get; set; } =new HashSet<AmintsDTO>();

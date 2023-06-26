@@ -27,6 +27,7 @@ public class PropertyManager : IPropertyManager
             NameOfProperty = property.Name,
             MaxNumOfGuest = property.MaximumNumberOfGuests,
             BedRoomCount = property.BedCount,
+            BathRoomCount = property.BathroomCount,
             PricePerNight = property.PricePerNight,
             PropertyDescription = property.Description,
             CityNmae = property.City?.CityName ?? string.Empty,
