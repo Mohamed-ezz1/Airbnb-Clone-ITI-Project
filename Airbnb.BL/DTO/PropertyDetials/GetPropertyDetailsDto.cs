@@ -9,9 +9,9 @@ namespace Airbnb.BL;
 public class GetPropertyDetailsDto
 {
     public string NameOfProperty { get; set; } = string.Empty;
-    public double RatingOverroll { get; set; }
+    //public double RatingOverroll { get; set; }
     public int MaxNumOfGuest { get; set; }
-    public int NumOfReview { get; set; }
+    //public int NumOfReview { get; set; }
     public string CityNmae { get; set; } = string.Empty;
     public string CountryNmae { get; set; } = string.Empty;
     public IEnumerable<string> Imgs { get; set; } = new List<string>();    
