@@ -1,10 +1,5 @@
 ﻿using Airbnb.DAL.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Airbnb.DAL
 {
@@ -14,30 +9,30 @@ namespace Airbnb.DAL
 
         public UserHostRepo(AircbnbContext aircbnbContext)
         {
-           _aircbnbContext = aircbnbContext;
+            _aircbnbContext = aircbnbContext;
         }
         public IEnumerable<Booking> GetHostBookingBD(string id)
         {
             return _aircbnbContext.Bookings
                 .Include(p => p.Property)
                 .Include(p => p.User)
-                .Where(p => p.Property.UserId == id);
+                .Where(p => p.Property!.UserId == id);
 
         }
 
         public IEnumerable<Property> GetHostPropertiesDB(string id)
         {
-   
-                return _aircbnbContext.Properties
-                    .Include(p => p.User)
-                    .Include(p => p.City)
-                        .ThenInclude(p => p.Country)
-                    .Where(p => p.UserId == id);
 
-            
+            return _aircbnbContext.Properties
+                .Include(p => p.User)
+                .Include(p => p.City)
+                    .ThenInclude(p => p.Country)
+                .Where(p => p.UserId == id);
+
+
         }
 
-  
+
 
     }
 }
