@@ -19,7 +19,7 @@ namespace Airbnb.API.Controllers
         // get host
 
         [HttpGet]
-        [Route("/HostBooking")]
+        [Route("HostBooking")]
         public ActionResult<IEnumerable<HostBookingsDto>> GetHostBooking()
         {
 
@@ -42,7 +42,7 @@ namespace Airbnb.API.Controllers
 
 
         [HttpGet]
-        [Route("/HostProperty")]
+        [Route("HostProperty")]
         public ActionResult<List<HostPropertiesDto>> GetHostProperties()
         {
             if (User?.Identity?.IsAuthenticated != true)
