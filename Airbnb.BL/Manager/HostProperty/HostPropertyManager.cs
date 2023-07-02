@@ -133,6 +133,8 @@ public class HostPropertyManager : IHostPropertyManager
             BathroomsCount = allUpdatedContentFromDb.BathroomCount,
             BedCount = allUpdatedContentFromDb.BedCount,
             Address = allUpdatedContentFromDb.Address,
+            OldCountryId = allUpdatedContentFromDb.City!.CounrtyId,
+
 
             OldAmenities = allUpdatedContentFromDb.PropertyAmenities.Select(x => x.AmenityId).ToList(),
             Images = allUpdatedContentFromDb.PropertyImages.Select(x => new ImageOfUpdatePropertyDto
