@@ -42,11 +42,19 @@ public class HstPropRepo : IHstPropRepo
 
     public Property? GetPropertyById(Guid id)
     {
+        //return _aircbnbContext.Set<Property>()
+        //    .Include(x=>x.PropertyImages)
+        //    .Include(x=>x.PropertyAmenities)
+        //         .ThenInclude(x=>x.Amenity)
+        //    .FirstOrDefault(x=>x.Id == id);
+
         return _aircbnbContext.Set<Property>()
-            .Include(x=>x.PropertyImages)
-            .Include(x=>x.PropertyAmenities)
-                 .ThenInclude(x=>x.Amenity)
-            .FirstOrDefault(x=>x.Id == id);
+            .Include(x => x.PropertyImages)
+            .Include(x => x.PropertyAmenities)
+                 .ThenInclude(x => x.Amenity)
+            .Include(x => x.City)
+                .ThenInclude(x => x!.Country)
+            .FirstOrDefault(x => x.Id == id);
     }
 
 
