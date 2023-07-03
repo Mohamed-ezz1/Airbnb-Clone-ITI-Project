@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Airbnb.API;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -129,6 +130,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+#region Image Handeling
+var staticFilesPath = Path.Combine(Environment.CurrentDirectory, "Images");
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(staticFilesPath),
+    RequestPath = "/Images"
+
+});
+#endregion
+
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
@@ -140,4 +151,4 @@ app.MapControllers();
 
 app.Run();
 
-
+//////

@@ -27,13 +27,14 @@ public class PropertyManager : IPropertyManager
             NameOfProperty = property.Name,
             MaxNumOfGuest = property.MaximumNumberOfGuests,
             BedRoomCount = property.BedCount,
+            BathRoomCount = property.BathroomCount,
             PricePerNight = property.PricePerNight,
             PropertyDescription = property.Description,
             CityNmae = property.City?.CityName ?? string.Empty,
             CountryNmae = property.City?.Country?.CountryName ?? string.Empty,
             UserName = $"{property.User?.FirstName ?? string.Empty} {property.User?.LasttName ?? string.Empty}",
-            RatingOverroll = property.OverALLReview,
-            NumOfReview = property.NumberOfReview,
+            //RatingOverroll = property.OverALLReview,
+            //NumOfReview = property.NumberOfReview,
             Aminties = property.PropertyAmenities.Select(a => new AmintsDTO
             {
                 AmintiesName = a.Amenity?.Name ?? string.Empty,

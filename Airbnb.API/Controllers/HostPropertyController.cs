@@ -48,7 +48,7 @@ namespace Airbnb.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetUpdate")]
+        [Route("{id}")]
         public ActionResult GetUpdateProperty(Guid id)
         {
             var PropertyGetUpdate = _hostPropertyManager.GetUpdatePropertyContent(id);

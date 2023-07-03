@@ -1,10 +1,4 @@
 ﻿using Airbnb.DAL.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Airbnb.DAL
 {
@@ -22,7 +16,7 @@ namespace Airbnb.DAL
 
         public User? GetUesrInfo(string userId)
         {
-         return   aircbnbContext.Users.Where(p => p.Id == userId).FirstOrDefault();
+            return aircbnbContext.Users.Where(p => p.Id == userId).FirstOrDefault();
 
         }
 

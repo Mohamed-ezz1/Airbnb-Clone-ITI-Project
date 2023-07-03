@@ -133,6 +133,8 @@ public class HostPropertyManager : IHostPropertyManager
             BathroomsCount = allUpdatedContentFromDb.BathroomCount,
             BedCount = allUpdatedContentFromDb.BedCount,
             Address = allUpdatedContentFromDb.Address,
+            OldCountryId = allUpdatedContentFromDb.City!.CounrtyId,
+
 
             OldAmenities = allUpdatedContentFromDb.PropertyAmenities.Select(x => x.AmenityId).ToList(),
             Images = allUpdatedContentFromDb.PropertyImages.Select(x => new ImageOfUpdatePropertyDto
@@ -144,40 +146,40 @@ public class HostPropertyManager : IHostPropertyManager
 
         };
 
-        var allCategorysFromDb = _categoryRepo.GetCategory();
+        //var allCategorysFromDb = _categoryRepo.GetCategory();
         
-        var allCategoryDto = allCategorysFromDb.Select(x => new CategoryOfUpdateDto
-        {
-            Id = x.Id,
-            Name = x.Name,
-        });
+        //var allCategoryDto = allCategorysFromDb.Select(x => new CategoryOfUpdateDto
+        //{
+        //    Id = x.Id,
+        //    Name = x.Name,
+        //});
 
-        var allAmentiesFromDb = _amenityRepo.GetAmenities();
+        //var allAmentiesFromDb = _amenityRepo.GetAmenities();
 
-        var allAmentiesDto = allAmentiesFromDb.Select(x => new AmenitiesOfUpdatePropertyDto
-        {
-            Id = x.Id,
-            Name = x.Name,
-        });
+        //var allAmentiesDto = allAmentiesFromDb.Select(x => new AmenitiesOfUpdatePropertyDto
+        //{
+        //    Id = x.Id,
+        //    Name = x.Name,
+        //});
 
-        var allCountriesFromDb = _counrtyRepo.GetCountries();
+        //var allCountriesFromDb = _counrtyRepo.GetCountries();
 
-        var allCountriesDto = allCountriesFromDb.Select(x => new CountryOfUpdateDto
-        {
-            Id = x.Id,
-            Name = x.CountryName,
-            Cities = x.Cities.Select(x => new CityofUpdateDto
-            {
-                Id = x.Id,
-                Name = x.CityName,
-            }).ToList(),
+        //var allCountriesDto = allCountriesFromDb.Select(x => new CountryOfUpdateDto
+        //{
+        //    Id = x.Id,
+        //    Name = x.CountryName,
+        //    Cities = x.Cities.Select(x => new CityofUpdateDto
+        //    {
+        //        Id = x.Id,
+        //        Name = x.CityName,
+        //    }).ToList(),
 
-        });
+        //});
 
 
-        propertyGetUpdateDto.Amenities = allAmentiesDto.ToList();
-        propertyGetUpdateDto.Countries = allCountriesDto.ToList();
-        propertyGetUpdateDto.Categories = allCategoryDto.ToList();
+        //propertyGetUpdateDto.Amenities = allAmentiesDto.ToList();
+        //propertyGetUpdateDto.Countries = allCountriesDto.ToList();
+        //propertyGetUpdateDto.Categories = allCategoryDto.ToList();
             
        
 
