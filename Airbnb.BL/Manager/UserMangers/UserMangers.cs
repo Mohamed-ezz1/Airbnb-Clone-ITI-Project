@@ -17,10 +17,11 @@ namespace Airbnb.BL
 
 
         }    
-        public string GetUserType(string Id)
+        public Usertypedto GetUserType(string Id)
         {
-
-             return   userDetails.GetUserType(Id).ToString();
+            var usertypestring = userDetails.GetUserType(Id).ToString();
+            var usertype = new Usertypedto { UserType= usertypestring };
+             return usertype;
         }
 
 

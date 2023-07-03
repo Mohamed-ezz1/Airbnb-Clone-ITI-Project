@@ -26,7 +26,7 @@ namespace Airbnb.API.Controllers
         [HttpGet]
         [Route("UserType")]
 
-        public ActionResult<string> GetUserType()
+        public ActionResult<Usertypedto> GetUserType()
         {
             if (User?.Identity?.IsAuthenticated != true)
             {

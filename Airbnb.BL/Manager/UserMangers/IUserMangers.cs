@@ -8,7 +8,7 @@ namespace Airbnb.BL;
 
     public interface IUserMangers
     {
-    String GetUserType(string Id);
+    Usertypedto GetUserType(string Id);
     GuestProfileReedDTO GuestProfileRead(string userId);
     bool UpdateGuestInfo(GuestProfileUpdateDto guestInfo);
 }
