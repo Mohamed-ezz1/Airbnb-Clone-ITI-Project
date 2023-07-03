@@ -42,16 +42,17 @@ namespace Airbnb.BL
             };
         }
 
-        public bool UpdateGuestInfo(GuestProfileUpdateDto guestInfoUodate)
+        public bool UpdateGuestInfo(GuestProfileUpdateDto guestInfoUodate, string userId)
         {
-            User User = userDetails.GetUesrInfo(guestInfoUodate.UserId);
+            User User = userDetails.GetUesrInfo( userId);
 
 
-            User.Id = guestInfoUodate.UserId;
-                User.FirstName = guestInfoUodate.FirstName;
+            //User.Id = guestInfoUodate.UserId;
+            User.FirstName = guestInfoUodate.FirstName;
             User.LasttName = guestInfoUodate.LastName;
             User.Email = guestInfoUodate.Email;
             User.About = guestInfoUodate.About;
+            User.PhoneNumber = guestInfoUodate.PhoneNumber;
 
             return userDetails.SaveChanges() > 0;
 

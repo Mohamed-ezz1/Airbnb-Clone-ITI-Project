@@ -10,7 +10,7 @@ namespace Airbnb.BL;
 public class GuestProfileUpdateDto
 {
 
-    public string UserId { get; set; } = string.Empty;
+    //public string UserId { get; set; } = string.Empty;
     public User? User { get; set; }
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;

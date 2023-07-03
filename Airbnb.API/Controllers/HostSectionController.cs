@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Airbnb.BL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace Airbnb.API.Controllers
         }
 
         // get host
-
+        [Authorize]
         [HttpGet]
         [Route("HostBooking")]
         public ActionResult<IEnumerable<HostBookingsDto>> GetHostBooking()
@@ -40,7 +41,7 @@ namespace Airbnb.API.Controllers
         }
 
 
-
+        [Authorize]
         [HttpGet]
         [Route("HostProperty")]
         public ActionResult<List<HostPropertiesDto>> GetHostProperties()
