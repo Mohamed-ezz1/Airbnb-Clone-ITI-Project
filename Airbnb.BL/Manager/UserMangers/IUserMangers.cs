@@ -10,6 +10,6 @@ namespace Airbnb.BL;
     {
     String GetUserType(string Id);
     GuestProfileReedDTO GuestProfileRead(string userId);
-    bool UpdateGuestInfo(GuestProfileUpdateDto guestInfo);
+    bool UpdateGuestInfo(GuestProfileUpdateDto guestInfo, string userId);
 }
 

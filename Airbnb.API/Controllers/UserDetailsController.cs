@@ -65,7 +65,9 @@ namespace Airbnb.API.Controllers
         [Authorize]
         public ActionResult<GuestProfileUpdateDto> GuestProfileUpdate(GuestProfileUpdateDto GuestInfo)
         {
-            bool isSuccessful = userMangers.UpdateGuestInfo(GuestInfo);
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            bool isSuccessful = userMangers.UpdateGuestInfo(GuestInfo, userId);
             if (!isSuccessful)
             {
                 return BadRequest();
