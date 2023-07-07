@@ -26,7 +26,7 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
             .Include(x => x.PropertyImages)
             .Include(u => u.User)
             .Include(c => c.City).ThenInclude(c => c.Country)
-            .Include(x => x.Reviews)
+            .Include(x => x.Reviews).ThenInclude(x=> x.User)
             .Include(x => x.PropertyAmenities)
             .ThenInclude(x => x.Amenity)
             .FirstOrDefault(x => x.Id == id);

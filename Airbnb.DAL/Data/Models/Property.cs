@@ -30,7 +30,7 @@ public class Property
     public IEnumerable<PropertyImage> PropertyImages { get; set; } = new List<PropertyImage>();
     public IEnumerable<Booking> PropertyBookings { get; set; } = new List<Booking>();
     public IEnumerable<PropertyRule> PropertyRules { get; set; } = new List<PropertyRule>();
-    public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
+    public IEnumerable<Review>? Reviews { get; set; } 
 
     public string? UserId { get; set; }
     public User? User { get; set; }
@@ -45,6 +45,17 @@ public class Property
     [Range(0,5)]
     public double OverALLReview
     {
-        get { return Reviews?.Average(review => review.Rate) ?? 0.0; }
+        //get { return Reviews?.Average(review => review.Rate) ?? 0.0; }
+        get
+        {
+            if (Reviews?.Count() > 0)
+            {
+                return Reviews.Average(review => review.Rate);
+            }
+            else
+            {
+                return 0.0;
+            }
+        }
     }
 }

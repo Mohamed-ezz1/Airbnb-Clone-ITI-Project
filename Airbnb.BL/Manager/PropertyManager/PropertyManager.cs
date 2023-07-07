@@ -33,8 +33,8 @@ public class PropertyManager : IPropertyManager
             CityNmae = property.City?.CityName ?? string.Empty,
             CountryNmae = property.City?.Country?.CountryName ?? string.Empty,
             UserName = $"{property.User?.FirstName ?? string.Empty} {property.User?.LasttName ?? string.Empty}",
-            //RatingOverroll = property.OverALLReview,
-            //NumOfReview = property.NumberOfReview,
+            RatingOverroll = property.OverALLReview,
+            NumOfReview = property.NumberOfReview,
             Aminties = property.PropertyAmenities.Select(a => new AmintsDTO
             {
                 AmintiesName = a.Amenity?.Name ?? string.Empty,
@@ -43,7 +43,7 @@ public class PropertyManager : IPropertyManager
             Imgs = property.PropertyImages.Select(x => x.Image),
             UserImage = property.User?.UserImage ?? string.Empty,
             BookingDates = property.PropertyBookings.Select(x => new PropertyBookingDates { CheckInDate = x.CheckInDate, CheckOutDate = x.CheckOutDate }),
-            
+            Reviews = property.Reviews.Select(x => new Reviewdto { Rate = x.Rate, ReviewComment = x.Comment, CreateDate=x.CreatedDate, UserName= x.User.UserName, Userimage = x.User.UserImage  })
         };
 
     }
