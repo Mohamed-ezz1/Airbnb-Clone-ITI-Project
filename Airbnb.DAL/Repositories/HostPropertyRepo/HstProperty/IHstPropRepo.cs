@@ -17,4 +17,7 @@ public interface IHstPropRepo
     int SaveChanges();
 
     User? GetUserById(string id);
+
+    Property? GetPropertyToDeleteById(Guid id);
+
 }

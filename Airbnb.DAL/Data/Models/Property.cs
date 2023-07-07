@@ -47,4 +47,6 @@ public class Property
     {
         get { return Reviews?.Average(review => review.Rate) ?? 0.0; }
     }
+
+    public bool isAvailable { get; set; } = true;
 }

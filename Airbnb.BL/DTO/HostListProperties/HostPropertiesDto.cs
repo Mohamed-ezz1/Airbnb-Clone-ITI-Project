@@ -18,5 +18,7 @@ public class HostPropertiesDto
     public string CountryName { get; set; } = string.Empty;
     public string CityName { get; set; } = string.Empty;
 
+    public bool Availability { get; set; } = true;
+
 
 }

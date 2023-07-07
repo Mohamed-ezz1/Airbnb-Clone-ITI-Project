@@ -57,9 +57,9 @@ public class HostPropertyManager : IHostPropertyManager
 
         var AddPropertyLists = new PropertyGetAddDto
         {
-                 Amenities = allAmentiesDto.ToList(),
-                 Countries = allCountriesDto.ToList(),
-                 Categories= allCategoryDto.ToList(),
+            Amenities = allAmentiesDto.ToList(),
+            Countries = allCountriesDto.ToList(),
+            Categories = allCategoryDto.ToList(),
         };
 
         return AddPropertyLists;
@@ -86,7 +86,7 @@ public class HostPropertyManager : IHostPropertyManager
             {
                 Image = x,
                 CreatedDate = DateTime.Now,
-                
+
 
             }).ToList(),
             PropertyAmenities = propertyPostAddDto.AmenitiesId.Select(x => new PropertyAmenity
@@ -95,7 +95,7 @@ public class HostPropertyManager : IHostPropertyManager
             }).ToList()
 
         };
-            
+
         bool isAdded = _propertyRepo.Add(property);
         if (isAdded)
         {
@@ -121,8 +121,8 @@ public class HostPropertyManager : IHostPropertyManager
         }
         var propertyGetUpdateDto = new PropertyGetUpdateDto
         {
-            PropertyId= id,
-             
+            PropertyId = id,
+
             PropertyName = allUpdatedContentFromDb.Name,
             PricePerNight = allUpdatedContentFromDb.PricePerNight,
             OldCityId = allUpdatedContentFromDb.CityId,
@@ -147,7 +147,7 @@ public class HostPropertyManager : IHostPropertyManager
         };
 
         //var allCategorysFromDb = _categoryRepo.GetCategory();
-        
+
         //var allCategoryDto = allCategorysFromDb.Select(x => new CategoryOfUpdateDto
         //{
         //    Id = x.Id,
@@ -180,8 +180,8 @@ public class HostPropertyManager : IHostPropertyManager
         //propertyGetUpdateDto.Amenities = allAmentiesDto.ToList();
         //propertyGetUpdateDto.Countries = allCountriesDto.ToList();
         //propertyGetUpdateDto.Categories = allCategoryDto.ToList();
-            
-       
+
+
 
         return propertyGetUpdateDto;
     }
@@ -189,7 +189,7 @@ public class HostPropertyManager : IHostPropertyManager
     public bool UpdateHostProperty(PropertyPostUpdateDto propertyPostUpdateDto)
     {
         Property? property = _propertyRepo.GetPropertyById(propertyPostUpdateDto.PropertyId);
-        if (property == null) 
+        if (property == null)
         {
             return false;
         }
@@ -200,7 +200,7 @@ public class HostPropertyManager : IHostPropertyManager
         property.RoomCount = propertyPostUpdateDto.BedroomsCount;
         property.PricePerNight = propertyPostUpdateDto.PricePerNight;
         property.MaximumNumberOfGuests = propertyPostUpdateDto.MaxNumberOfGuests;
-        property.Description= propertyPostUpdateDto.Description;
+        property.Description = propertyPostUpdateDto.Description;
         property.CityId = propertyPostUpdateDto.CityId;
         property.CategoryId = propertyPostUpdateDto.CategoryId;
         property.PropertyImages = propertyPostUpdateDto.ImagesURLs.Select(x => new PropertyImage
@@ -219,5 +219,30 @@ public class HostPropertyManager : IHostPropertyManager
 
 
         return true;
+    }
+
+    public bool DeleteProperty(Guid id)
+    {
+        var property = _propertyRepo.GetPropertyToDeleteById(id);
+        var checkInDates = property.PropertyBookings.Select(x => new { x.CheckInDate }).ToList();
+        //for (int i = 0; i > checkInDates.ToArray().Length; i++)
+        //{
+
+        //    if (checkInDates[i].CheckInDate < DateTime.Now.AddDays(7))
+        //    {
+        //        property.isAvailable = false;
+        //    }
+
+        //}
+
+        foreach (var checkInDate in checkInDates)
+        {
+            if (checkInDate.CheckInDate > DateTime.Now.AddDays(7))
+            {
+                property.isAvailable = false;
+                 _propertyRepo.SaveChanges();
+            }
+        }
+        return property.isAvailable;
     }
 }

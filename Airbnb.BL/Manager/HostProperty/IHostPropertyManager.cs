@@ -12,4 +12,5 @@ public interface IHostPropertyManager
     PropertyGetUpdateDto? GetUpdatePropertyContent(Guid id);
     bool AddProperty(PropertyPostAddDto propertyPostAddDto, string userId);
     bool UpdateHostProperty(PropertyPostUpdateDto propertyPostUpdateDto);
+    bool DeleteProperty(Guid id);
 }

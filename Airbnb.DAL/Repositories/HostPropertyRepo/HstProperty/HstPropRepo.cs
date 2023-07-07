@@ -57,5 +57,10 @@ public class HstPropRepo : IHstPropRepo
             .FirstOrDefault(x => x.Id == id);
     }
 
-
+    public Property? GetPropertyToDeleteById(Guid id)
+    {
+        return _aircbnbContext.Set<Property>()
+            .Include(x => x.PropertyBookings)
+            .FirstOrDefault(x => x.Id == id);
+    }
 }
