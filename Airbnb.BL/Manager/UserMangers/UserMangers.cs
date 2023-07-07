@@ -37,7 +37,10 @@ namespace Airbnb.BL
                 PhoneNumber = UserData.PhoneNumber,
                 FirstName = UserData.FirstName,
                 LastName = UserData.LasttName,
-                About = UserData.About
+                About = UserData.About,
+                Url=UserData.UserImage
+
+
 
             };
         }
@@ -53,6 +56,7 @@ namespace Airbnb.BL
             User.Email = guestInfoUodate.Email;
             User.About = guestInfoUodate.About;
             User.PhoneNumber = guestInfoUodate.PhoneNumber;
+            User.UserImage = guestInfoUodate.Url;
 
             return userDetails.SaveChanges() > 0;
 

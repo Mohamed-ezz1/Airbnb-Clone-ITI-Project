@@ -52,6 +52,12 @@ public class HomeManager : IHomeManager
     {
 
         var PropertiesBeforeFilter=  _propertyRepo.GetAllProps() ;
+
+
+        if (Search.NumberOfGuests == null)
+        {
+            Search.NumberOfGuests =0;
+        }
         if (Search.CatogreyId != null)
         {
 

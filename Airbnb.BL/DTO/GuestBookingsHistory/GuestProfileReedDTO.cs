@@ -15,6 +15,8 @@ public class GuestProfileReedDTO
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
     public string About { get; set; }
+    public string Url { get; set; }
 
 
- }
+
+}

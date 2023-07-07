@@ -17,4 +17,5 @@ public class GuestProfileUpdateDto
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
     public string About { get; set; } = string.Empty;
+    public string Url { get; set; } = string.Empty;
 }
