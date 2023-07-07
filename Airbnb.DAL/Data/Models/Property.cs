@@ -58,4 +58,6 @@ public class Property
             }
         }
     }
+
+    public bool isAvailable { get; set; } = true;
 }

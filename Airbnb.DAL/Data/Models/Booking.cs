@@ -24,5 +24,5 @@ public class Booking
     [Range(0,16)]
     public int NumberOfGuests { get; set; }
     public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
-
+    public bool is_revied { get; set; }
 }

@@ -20,10 +20,10 @@ namespace Airbnb.API.Controllers
         [HttpGet]
         public ActionResult GetAddProperty()
         {
-            var lists= _hostPropertyManager.GetAddPropertyLists();
+            var lists = _hostPropertyManager.GetAddPropertyLists();
 
             return Ok(lists);
-             
+
         }
 
         [HttpPost]
@@ -34,11 +34,11 @@ namespace Airbnb.API.Controllers
                 return BadRequest("No users login");
             }
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            
+
             bool isAdded = _hostPropertyManager.AddProperty(propertyPostAddDto, userId!);
-            if(isAdded)
+            if (isAdded)
             {
-              return StatusCode(StatusCodes.Status201Created);
+                return StatusCode(StatusCodes.Status201Created);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace Airbnb.API.Controllers
         }
 
         [HttpPut]
-        public ActionResult UpdateProperty(PropertyPostUpdateDto propertyPostUpdateDto )
+        public ActionResult UpdateProperty(PropertyPostUpdateDto propertyPostUpdateDto)
         {
             var IsFound = _hostPropertyManager.UpdateHostProperty(propertyPostUpdateDto);
             if (!IsFound)
@@ -68,7 +68,19 @@ namespace Airbnb.API.Controllers
 
         }
 
+        [HttpPut]
+        [Route("{id}")]
+        public ActionResult DeleteProperty(Guid id)
+        {
+            var isNotDeleted = _hostPropertyManager.DeleteProperty(id);
+            if (isNotDeleted)
+            {
+                return BadRequest("Cant delete a property that have booking in 7 days");
+            }
+            return Ok("Deleted");
+        }
 
-       
+
+
     }
 }
