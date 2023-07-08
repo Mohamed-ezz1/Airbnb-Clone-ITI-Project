@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Airbnb.API;
 using Microsoft.Extensions.FileProviders;
+using Airbnb.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,7 +54,8 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
     options.User.RequireUniqueEmail = true;
 })
-    .AddEntityFrameworkStores<AircbnbContext>();
+    .AddEntityFrameworkStores<AircbnbContext>()
+    .AddDefaultTokenProviders();
 
 
 #endregion
@@ -84,6 +86,7 @@ builder.Services.AddAuthentication(options =>
 
 #region MyRegion
 
+builder.Services.AddScoped<IMailingService, MailingService>();
 
 builder.Services.AddScoped<IGuestSectionManager, GuestSectionManager>();
 builder.Services.AddScoped<IGuestSectionRepo, GuestSectionRepo>();
