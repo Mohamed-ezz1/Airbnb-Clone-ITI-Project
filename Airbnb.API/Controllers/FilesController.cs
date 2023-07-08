@@ -18,7 +18,8 @@ namespace Airbnb.API.Controllers
                 ".png",
                 ".jpg",
                 ".avg",
-                ".webp"
+                ".webp",
+                ".jpeg"
             };
 
             bool isAllowedExtension = allowedExtension.Contains(extension,StringComparer.InvariantCultureIgnoreCase);
