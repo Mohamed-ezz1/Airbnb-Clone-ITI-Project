@@ -29,7 +29,7 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
             .Include(x => x.Reviews).ThenInclude(x=> x.User)
             .Include(x => x.PropertyAmenities)
             .ThenInclude(x => x.Amenity)
-            .FirstOrDefault(x => x.Id == id);
+            .FirstOrDefault(x => x.Id == id); 
     }
 
     public bool Add(Booking booking)

@@ -52,5 +52,23 @@ namespace Airbnb.API.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult<checkforReviewDto> checkForReview( Guid propid)
+        {
+            if (User?.Identity?.IsAuthenticated != true)
+            {
+                return BadRequest("No users login");
+            }
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+
+                return NotFound();
+            }
+
+            return _propertyManager.checkforreview(propid, userId);
+
+        }
+
     }
 }

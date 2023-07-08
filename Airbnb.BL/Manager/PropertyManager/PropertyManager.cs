@@ -84,4 +84,19 @@ public class PropertyManager : IPropertyManager
 
     }
 
+public checkforReviewDto checkforreview (Guid propertyid)
+    {
+         var bookings =_propertyRepo.GetBookingsByPropertyId(propertyid);
+
+        if (bookings.Count() == 0)
+        {
+            return new checkforReviewDto { hasreview = false, bookingid = null };
+
+        }
+
+
+
+    }
+
+
 }
