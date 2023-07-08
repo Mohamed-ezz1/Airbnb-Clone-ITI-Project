@@ -53,6 +53,8 @@ namespace Airbnb.API.Controllers
         }
 
         [HttpGet]
+        [Route("checkforRevies/{propid}")]
+
         public ActionResult<checkforReviewDto> checkForReview( Guid propid)
         {
             if (User?.Identity?.IsAuthenticated != true)
