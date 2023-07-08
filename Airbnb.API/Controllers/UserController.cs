@@ -10,6 +10,9 @@ using Airbnb.BL;
 using Microsoft.Extensions.Configuration;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Airbnb.DAL.Data;
+using Airbnb.BL.DTO.DataUser;
 
 namespace Airbnb.API.Controllers
 {
@@ -17,13 +20,19 @@ namespace Airbnb.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IMailingService mailing;
+        private readonly AircbnbContext _context;
+
         private readonly IConfiguration _configuration;
         private readonly UserManager<User> _userManager;
+        private readonly IMailingService mailingService;
 
-        public UserController(IConfiguration configuration, UserManager<User> userManager)
+        public UserController(IConfiguration configuration, UserManager<User> userManager, IMailingService _mailingService, AircbnbContext context )
         {
             _configuration = configuration;
             _userManager = userManager;
+            this.mailingService = _mailingService;
+            _context = context;
         }
 
         #region Register
@@ -91,7 +100,7 @@ namespace Airbnb.API.Controllers
                 SecurityAlgorithms.HmacSha256Signature);
 
             // Putting All together
-            DateTime exp = DateTime.Now.AddMinutes(200);
+            DateTime exp = DateTime.Now.AddDays(200);
             JwtSecurityToken token = new JwtSecurityToken(
                     claims: claimsList,
                     signingCredentials: signingCredentials,
@@ -108,6 +117,92 @@ namespace Airbnb.API.Controllers
             };
         }
 
+        #endregion
+
+        #region Sending Email
+
+        [HttpPost]
+        [Route("Send_Email")]
+        public async Task<ActionResult> SendEmail([FromForm] MailRequestDto mailRequestDto)
+        {
+            await mailingService.SendEmailAsync(mailRequestDto.ToEmail, mailRequestDto.Subject, mailRequestDto.Body);
+
+            return Ok("Email Sending Successfully!!!");
+        }
+
+        #endregion
+
+
+        #region Forget_Password
+        [HttpPost]
+        [Route("Forget_Password")]
+        public async Task<ActionResult> Forget_Password([FromForm] string email)
+        {
+
+            if (string.IsNullOrEmpty(email))
+            {
+                return BadRequest("Email is Invalid!!!!");
+            }
+
+            User? user = await _userManager.FindByEmailAsync(email);
+            if (user is null)
+            {
+                return BadRequest("User not found with the given email.");
+            }
+
+            var random = new Random();
+            var code = random.Next(100000, 999999).ToString();
+            user.Code = code;
+            _context.SaveChanges();
+
+            await mailingService.SendEmailAsync(email, "Reset Password", $"<h1>Your Code is {code}</h1>");
+
+            var response = new
+            {
+                message = "Reset Password Email has been Sent Successfully!!!"
+            };
+
+            return Ok(response);
+        }
+
+        #endregion
+
+
+
+        #region reset_password
+        [HttpPost]
+        [Route("Reset_Password")]
+        public async Task<ActionResult> ResetPassword(UserResetPasswordDto userResetPasswordDto)
+        {
+            User? user = await _userManager.FindByEmailAsync(userResetPasswordDto.Email);
+            if (user is null)
+            {
+                return NotFound("user not found!!!");
+            }
+
+            if (userResetPasswordDto.NewPassword != userResetPasswordDto.ConfirmNewPassword)
+            {
+                return BadRequest("passwored dosen't match confirmation!");
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            //var encodedtoken = Encoding.UTF8.GetBytes(token);
+            //var validtoken = WebEncoders.Base64UrlEncode(encodedtoken);
+
+            var result = await _userManager.ResetPasswordAsync(user, token, userResetPasswordDto.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            var response = new
+            {
+                message = "Password has been Reset Successfully!!!"
+            };
+
+            return Ok(response);
+        }
         #endregion
     }
 }

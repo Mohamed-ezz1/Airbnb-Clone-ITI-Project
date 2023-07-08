@@ -43,7 +43,7 @@ public class PropertyManager : IPropertyManager
             Imgs = property.PropertyImages.Select(x => x.Image),
             UserImage = property.User?.UserImage ?? string.Empty,
             BookingDates = property.PropertyBookings.Select(x => new PropertyBookingDates { CheckInDate = x.CheckInDate, CheckOutDate = x.CheckOutDate }),
-            Reviews = property.Reviews.Select(x => new Reviewdto { Rate = x.Rate, ReviewComment = x.Comment, CreateDate=x.CreatedDate, UserName= x.User.UserName, Userimage = x.User.UserImage  })
+            Reviews = property.Reviews.Select(x => new Reviewdto { Rate = x.Rate, ReviewComment = x.Comment, CreateDate=x.CreatedDate, UserName= x.User.FirstName+' '+x.User.LasttName, Userimage = x.User.UserImage  })
         };
 
     }

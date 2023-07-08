@@ -13,7 +13,7 @@ namespace Airbnb.DAL
         }
         public IEnumerable<Booking> GetHostBookingBD(string id)
         {
-            return _aircbnbContext.Bookings
+            return _aircbnbContext.Bookings.Where(x => x.Property!.isAvailable == true)
                 .Include(p => p.Property)
                 .Include(p => p.User)
                 .Where(p => p.Property!.UserId == id);
@@ -23,7 +23,7 @@ namespace Airbnb.DAL
         public IEnumerable<Property> GetHostPropertiesDB(string id)
         {
 
-            return _aircbnbContext.Properties
+            return _aircbnbContext.Properties.Where(x => x.isAvailable == true)
                 .Include(p => p.User)
                 .Include(p => p.City)
                     .ThenInclude(p => p.Country)

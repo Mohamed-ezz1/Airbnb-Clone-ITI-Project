@@ -19,7 +19,7 @@ public class PropertiesRepo : IPropertiesRepo
 
     public IEnumerable<Property> GetAllProps()
     {
-        return _context.Set<Property>()
+        return _context.Set<Property>().Where(x => x.isAvailable == true)
             .Include(p => p.City).ThenInclude(p => p.Country)
             .Include(p => p.PropertyImages)
             .AsNoTracking();

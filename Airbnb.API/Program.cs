@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Airbnb.API;
 using Microsoft.Extensions.FileProviders;
+using Airbnb.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +37,7 @@ builder.Services.AddCors(options =>
 
 #region DataBase
 builder.Services.AddDbContext<AircbnbContext>(options =>
- options.UseSqlServer("Server=DESKTOP-34KGDF7\\MSSQLSERVER01; Database=RentifyEdit; Trusted_Connection=true; Encrypt=false;"));
+ options.UseSqlServer("Server=.; Database=AirBNB2023; Trusted_Connection=true; Encrypt=false;"));
 #endregion
 
 #region Identity
@@ -53,7 +54,8 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
     options.User.RequireUniqueEmail = true;
 })
-    .AddEntityFrameworkStores<AircbnbContext>();
+    .AddEntityFrameworkStores<AircbnbContext>()
+    .AddDefaultTokenProviders();
 
 
 #endregion
@@ -84,6 +86,7 @@ builder.Services.AddAuthentication(options =>
 
 #region MyRegion
 
+builder.Services.AddScoped<IMailingService, MailingService>();
 
 builder.Services.AddScoped<IGuestSectionManager, GuestSectionManager>();
 builder.Services.AddScoped<IGuestSectionRepo, GuestSectionRepo>();

@@ -77,7 +77,7 @@ namespace Airbnb.API.Controllers
             {
                 return BadRequest("Cant delete a property that have booking in 7 days");
             }
-            return Ok("Deleted");
+            return Ok();
         }
 
 
