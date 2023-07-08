@@ -68,6 +68,22 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
     }
 
 
+   public  bool AddReview(Review newreview)
+    { 
+        if (newreview == null)
+        {
+
+            return false;
+        }
+        else
+        {
+
+             _Context.Reviews.Add(newreview);
+             this.SaveChanges();
+            return true;
+        }
+
+    }
 
 
     public int SaveChanges()

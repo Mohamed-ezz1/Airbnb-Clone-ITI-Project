@@ -13,6 +13,5 @@ public interface IPropertiesRepo
     IEnumerable<Category> GetAllCategs();
     IEnumerable<UserType> GetUser();
 
-
     Category? GetCategoryById(int id);
 }

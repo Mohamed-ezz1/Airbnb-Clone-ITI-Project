@@ -72,5 +72,23 @@ namespace Airbnb.API.Controllers
 
         }
 
+
+        public ActionResult<AddReviewDto> AddReview(AddReviewDto addReview)
+        {
+            if (User?.Identity?.IsAuthenticated != true)
+            {
+                return BadRequest("No users login");
+            }
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+
+                return NotFound();
+            }
+              _propertyManager.AddReview(addReview, userId);
+            return Ok();
+
+
+        }
     }
 }

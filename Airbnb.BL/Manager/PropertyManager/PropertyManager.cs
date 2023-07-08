@@ -125,6 +125,20 @@ public class PropertyManager : IPropertyManager
 
 
     }
+     public bool AddReview(AddReviewDto addReview, string userId)
+    {
 
+        Property? property = _propertyRepo.FindPropertyById(addReview.Propertyid);
+        if (property == null || property.PropertyBookings == null)
+        {
+            return false;
+        }
+
+
+
+        return _propertyRepo.AddReview(new Review { BookingId = addReview.Bookingid, PropertyId = addReview.Propertyid, UserId = userId, Comment = addReview.Comment, Rate = addReview.Rate });
+
+
+    }
 
 }
