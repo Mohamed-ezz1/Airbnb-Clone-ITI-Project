@@ -134,7 +134,7 @@ public class PropertyManager : IPropertyManager
             return false;
         }
 
-
+        
 
         return _propertyRepo.AddReview(new Review { BookingId = addReview.Bookingid, PropertyId = addReview.Propertyid, UserId = userId, Comment = addReview.Comment, Rate = addReview.Rate });
 

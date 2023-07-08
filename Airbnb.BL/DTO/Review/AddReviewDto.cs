@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airbnb.BL.DTO.Review
+namespace Airbnb.BL
 {
-    internal class AddReviewDto
+    public class AddReviewDto
     {
+        public Guid Bookingid { get; set; }
+        public Guid Propertyid { get; set; }
+        public Guid Userid { get; set; }
+        public  string Comment { get; set; }
+        public int Rate { get; set; }
     }
 }
