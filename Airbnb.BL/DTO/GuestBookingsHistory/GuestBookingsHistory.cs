@@ -15,5 +15,6 @@ public class GuestBookingsHistory
     public double TotalPrice { get; set; }
     public DateTime CheckInDate { get; set; }
     public DateTime CheckOutDate { get; set; }
-    
+    public bool Status { get; set; }
+
 }

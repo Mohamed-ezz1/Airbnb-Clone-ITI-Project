@@ -100,7 +100,7 @@ namespace Airbnb.API.Controllers
                 SecurityAlgorithms.HmacSha256Signature);
 
             // Putting All together
-            DateTime exp = DateTime.Now.AddMinutes(200);
+            DateTime exp = DateTime.Now.AddDays(200);
             JwtSecurityToken token = new JwtSecurityToken(
                     claims: claimsList,
                     signingCredentials: signingCredentials,

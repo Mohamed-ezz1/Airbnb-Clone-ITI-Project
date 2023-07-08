@@ -25,12 +25,12 @@ public class GuestSectionManager : IGuestSectionManager
 
         return new GuestBookingsHistory
         {
-            HostName = Booking.User.FirstName,
+            HostName = Booking.User!.FirstName,
             BookId = Booking.Id,
             CheckInDate = Booking.CheckInDate,
             CheckOutDate = Booking.CheckOutDate,
             TotalPrice = Booking.TotalPrice,
-            PropertyName = Booking.Property.Name,
+            PropertyName = Booking.Property!.Name,
 
         };
 
@@ -52,13 +52,13 @@ public class GuestSectionManager : IGuestSectionManager
         List<GuestBookingsHistory>? ConvertBookingToDto =
             Bookings.Select(p => new GuestBookingsHistory
             {
-                HostName = p.User?.FirstName,
+                HostName = p.User!.FirstName,
                 BookId = p.Id,
                 CheckInDate = p.CheckInDate,
                 CheckOutDate = p.CheckOutDate,
                 TotalPrice = p.TotalPrice,
-                PropertyName = p.Property?.Name
-
+                PropertyName = p.Property!.Name,
+                Status = p.Property.isAvailable
 
             }).ToList();
 
