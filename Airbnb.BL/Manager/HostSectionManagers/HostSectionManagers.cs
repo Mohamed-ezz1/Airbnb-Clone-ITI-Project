@@ -21,7 +21,7 @@ namespace Airbnb.BL
             IEnumerable<Booking> host = _userHostRepo.GetHostBookingBD(UserId);
             IEnumerable<HostBookingsDto> hostBookingsDtos = host.Select(x => new HostBookingsDto
             {
-                 GuestName = x.User.FirstName +""+x.User.LasttName,
+                 GuestName = $"{x.User.FirstName} {x.User.LasttName}" ,
                  PropertyName = x.Property.Name,
                  CheckInDate = x.CheckInDate,
                  CheckOutDate = x.CheckOutDate,
