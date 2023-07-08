@@ -113,6 +113,7 @@ public class PropertyManager : IPropertyManager
                 else
                 {
                     book.is_revied = true;
+                    _propertyRepo.SaveChanges();
                 }
             }
         }
