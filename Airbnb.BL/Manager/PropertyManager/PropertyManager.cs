@@ -84,15 +84,41 @@ public class PropertyManager : IPropertyManager
 
     }
 
-public checkforReviewDto checkforreview (Guid propertyid)
+    public checkforReviewDto checkforreview(Guid propertyid, string userid)
     {
-         var bookings =_propertyRepo.GetBookingsByPropertyId(propertyid);
+        var bookings = _propertyRepo.GetBookingsByPropertyId(propertyid);
+        bookings = bookings.Where(x => x.CheckInDate <= DateTime.Now && x.is_revied == false && x.User.Id==userid).OrderBy(x =>x.CheckInDate).ToList();
 
-        if (bookings.Count() == 0)
+        if (bookings.Count() == 0 || bookings==null)
         {
             return new checkforReviewDto { hasreview = false, bookingid = null };
 
+        } else if (bookings.Count() == 1)
+        {
+
+            return new checkforReviewDto { hasreview = true, bookingid = bookings.Select(x=>x.Id).FirstOrDefault() };
+
+
+        }else if (bookings.Count() > 1)
+        {
+            var last = bookings.Last();
+            foreach(var book in bookings)
+{
+                // do something with each item
+                if (book.Equals(last))
+                {
+                    return new checkforReviewDto { hasreview = true, bookingid = book.Id };
+                }
+                else
+                {
+                    book.is_revied = true;
+                }
+            }
         }
+
+
+        return new checkforReviewDto { bookingid = null, hasreview = false };
+        
 
 
 
