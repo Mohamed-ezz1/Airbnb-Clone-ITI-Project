@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Airbnb.API;
 using Microsoft.Extensions.FileProviders;
-using Airbnb.API;
 
 var builder = WebApplication.CreateBuilder(args);
 

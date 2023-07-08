@@ -204,5 +204,37 @@ namespace Airbnb.API.Controllers
             return Ok(response);
         }
         #endregion
+
+
+        #region Check code
+        [HttpPost]
+        [Route("Check_Code")]
+        public async Task<ActionResult> Check_Code([FromBody] ConfirmCodeDto confirmCodeDto)
+        {
+            if (string.IsNullOrEmpty(confirmCodeDto.Email))
+            {
+                return BadRequest("Email is Invalid!!!!");
+            }
+
+            User? user = await _userManager.FindByEmailAsync(confirmCodeDto.Email);
+            if (user is null)
+            {
+                return NotFound("User not found with the given email.");
+            }
+
+            if (user.Code != confirmCodeDto.Code)
+            {
+                return BadRequest("Invalid Code!!!");
+            }
+
+            var response = new
+            {
+                message = "Code is Valid"
+            };
+
+            return Ok(response);
+
+        }
+        #endregion
     }
 }

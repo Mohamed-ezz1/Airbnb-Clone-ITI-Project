@@ -53,6 +53,8 @@ namespace Airbnb.API.Controllers
         }
 
         [HttpGet]
+        [Route("checkforRevies/{propid}")]
+
         public ActionResult<checkforReviewDto> checkForReview( Guid propid)
         {
             if (User?.Identity?.IsAuthenticated != true)
@@ -70,5 +72,24 @@ namespace Airbnb.API.Controllers
 
         }
 
+        [HttpPost]
+        [Route("addReview")]
+        public ActionResult<AddReviewDto> AddReview(AddReviewDto addReview)
+        {
+            if (User?.Identity?.IsAuthenticated != true)
+            {
+                return BadRequest("No users login");
+            }
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+
+                return NotFound();
+            }
+              _propertyManager.AddReview(addReview, userId);
+            return Ok();
+
+
+        }
     }
 }

@@ -14,4 +14,6 @@ public interface IPropertyDetailsRepo
     bool IsBookingDateRangeOverlap(Booking newBooking);
     IEnumerable<Booking> GetBookingsByPropertyId(Guid propertyId);
     int SaveChanges();
+    bool AddReview(Review newreview);
+
 }

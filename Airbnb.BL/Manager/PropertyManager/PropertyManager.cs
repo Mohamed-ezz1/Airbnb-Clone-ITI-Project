@@ -67,7 +67,8 @@ public class PropertyManager : IPropertyManager
             CheckOutDate = bookingDto.EndDate,
             NumberOfGuests = bookingDto.NumOfGuest,
             TotalPrice = property.PricePerNight * (bookingDto.EndDate - bookingDto.StartDate).TotalDays,
-            BookingDate = DateTime.Now
+            BookingDate = DateTime.Now,
+            is_revied = false
         };
 
         bool isAdded = _propertyRepo.Add(booking);
@@ -87,7 +88,7 @@ public class PropertyManager : IPropertyManager
     public checkforReviewDto checkforreview(Guid propertyid, string userid)
     {
         var bookings = _propertyRepo.GetBookingsByPropertyId(propertyid);
-        bookings = bookings.Where(x => x.CheckInDate <= DateTime.Now && x.is_revied == false && x.User.Id==userid).OrderBy(x =>x.CheckInDate).ToList();
+        bookings = bookings.Where(x => x.CheckInDate <= DateTime.Now && x.is_revied == false && x.UserId  ==userid).OrderBy(x =>x.CheckInDate).ToList();
 
         if (bookings.Count() == 0 || bookings==null)
         {
@@ -112,6 +113,7 @@ public class PropertyManager : IPropertyManager
                 else
                 {
                     book.is_revied = true;
+                    _propertyRepo.SaveChanges();
                 }
             }
         }
@@ -123,6 +125,20 @@ public class PropertyManager : IPropertyManager
 
 
     }
+     public bool AddReview(AddReviewDto addReview, string userId)
+    {
 
+        Property? property = _propertyRepo.FindPropertyById(addReview.Propertyid);
+        if (property == null || property.PropertyBookings == null)
+        {
+            return false;
+        }
+
+        
+
+        return _propertyRepo.AddReview(new Review { BookingId = addReview.Bookingid, PropertyId = addReview.Propertyid, UserId = userId, Comment = addReview.Comment, Rate = addReview.Rate });
+
+
+    }
 
 }

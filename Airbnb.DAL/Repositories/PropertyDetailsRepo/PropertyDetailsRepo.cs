@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Airbnb.DAL.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Airbnb.DAL;
 
@@ -52,6 +53,16 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
         return bookings;
     }
 
+
+
+    public Booking GetBooking(Guid ID)
+    {
+      Booking book = _Context.Bookings
+       .Where(booking => booking.Id == ID)
+       .First();
+        return book;
+    }
+
     public bool IsBookingDateRangeOverlap(Booking newBooking)
     {
         IEnumerable<Booking> propertyBookings = GetBookingsByPropertyId((Guid)newBooking.PropertyId);
@@ -68,6 +79,30 @@ public class PropertyDetailsRepo : IPropertyDetailsRepo
     }
 
 
+   public  bool AddReview(Review newreview)
+    {
+        var x = GetBooking(newreview.BookingId);
+
+        if (newreview == null)
+        {
+
+            return false;
+        }
+
+        else if (x.is_revied==false)
+        {
+
+             _Context.Reviews.Add(newreview);
+            x.is_revied = true;
+             this.SaveChanges();
+            return true;
+        }
+       
+        
+            return false;
+        
+
+    }
 
 
     public int SaveChanges()
