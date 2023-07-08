@@ -72,7 +72,8 @@ namespace Airbnb.API.Controllers
 
         }
 
-
+        [HttpPost]
+        [Route("addReview")]
         public ActionResult<AddReviewDto> AddReview(AddReviewDto addReview)
         {
             if (User?.Identity?.IsAuthenticated != true)

@@ -11,7 +11,7 @@ namespace Airbnb.BL
         public Guid Bookingid { get; set; }
         public Guid Propertyid { get; set; }
         public Guid Userid { get; set; }
-        public  string Comment { get; set; }
+        public  string ?Comment { get; set; }
         public int Rate { get; set; }
     }
 }
