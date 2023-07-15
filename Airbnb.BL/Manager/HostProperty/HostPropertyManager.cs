@@ -224,25 +224,26 @@ public class HostPropertyManager : IHostPropertyManager
     public bool DeleteProperty(Guid id)
     {
         var property = _propertyRepo.GetPropertyToDeleteById(id);
-        var checkInDates = property.PropertyBookings.Select(x => new { x.CheckInDate }).ToList();
-        //for (int i = 0; i > checkInDates.ToArray().Length; i++)
-        //{
+        var checkInDates = property!.PropertyBookings.Select(x => new { x.CheckInDate }).ToList();
 
-        //    if (checkInDates[i].CheckInDate < DateTime.Now.AddDays(7))
-        //    {
-        //        property.isAvailable = false;
-        //    }
-
-        //}
-
-        foreach (var checkInDate in checkInDates)
+        if (checkInDates.Count == 0)
         {
-            if (checkInDate.CheckInDate > DateTime.Now.AddDays(7))
+            property.isAvailable = false;
+            _propertyRepo.SaveChanges();
+        }
+        else
+        {
+            foreach (var checkInDate in checkInDates)
             {
-                property.isAvailable = false;
-                 _propertyRepo.SaveChanges();
+                if (checkInDate.CheckInDate > DateTime.Now.AddDays(7))
+                {
+                    property.isAvailable = false;
+                    _propertyRepo.SaveChanges();
+                }
             }
         }
+
         return property.isAvailable;
     }
+
 }

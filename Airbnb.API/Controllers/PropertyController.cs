@@ -59,7 +59,7 @@ namespace Airbnb.API.Controllers
         {
             if (User?.Identity?.IsAuthenticated != true)
             {
-                return BadRequest("No users login");
+                return _propertyManager.checkforreview(propid, null);
             }
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)

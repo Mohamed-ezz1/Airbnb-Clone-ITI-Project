@@ -90,7 +90,7 @@ public class PropertyManager : IPropertyManager
         var bookings = _propertyRepo.GetBookingsByPropertyId(propertyid);
         bookings = bookings.Where(x => x.CheckInDate <= DateTime.Now && x.is_revied == false && x.UserId  ==userid).OrderBy(x =>x.CheckInDate).ToList();
 
-        if (bookings.Count() == 0 || bookings==null)
+        if (bookings.Count() == 0 || bookings==null || userid==null)
         {
             return new checkforReviewDto { hasreview = false, bookingid = null };
 
