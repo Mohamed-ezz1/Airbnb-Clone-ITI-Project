@@ -1,2 +1,0 @@
-# Rentify-ITI-Project-Backend
- 
